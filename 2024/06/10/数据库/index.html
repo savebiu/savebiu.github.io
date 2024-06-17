@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>UP's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Hexo</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title"></h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-06-12 11:08:46</span></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">495</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS `runoob_tbl`(</span><br><span class="line">   `runoob_id` INT UNSIGNED AUTO_INCREMENT,</span><br><span class="line">   //关键字用于创建一个自增长的列</span><br><span class="line">   </span><br><span class="line">   `runoob_title` VARCHAR(100) NOT NULL,</span><br><span class="line">   //不想字段为空可以设置字段的属性为 NOT NULL</span><br><span class="line">   </span><br><span class="line">   `runoob_author` VARCHAR(40) NOT NULL,</span><br><span class="line">   `submission_date` DATE,</span><br><span class="line">   </span><br><span class="line">   PRIMARY KEY ( `runoob_id` )</span><br><span class="line">   //用于定义主键,您可以使用多列来定义主键，列间以逗号 , 分隔。</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">//ENGINE 设置存储引擎，CHARSET 设置编码。</span><br><span class="line">// CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;</span><br><span class="line">创建一个使用 utf8mb4 字符集和 utf8mb4_general_ci 排序规则的表。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE table_name ;   </span><br><span class="line">-- 直接删除表，不检查是否存在</span><br><span class="line">或</span><br><span class="line">DROP TABLE [IF EXISTS] table_name;</span><br><span class="line">--检查是否存在</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name (userid,username, email, birthdate, is_active)</span><br><span class="line">VALUES (NULL,&#x27;test&#x27;, &#x27;test@runoob.com&#x27;, &#x27;1990-01-01&#x27;, true);</span><br><span class="line">//NULL 是用于自增长列的占位符，表示系统将为 id 列生成一个唯一的值。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SELECT * FROM table_name;</span><br><span class="line">// *选择所有列</span><br><span class="line"></span><br><span class="line">SELECT username, email FROM users;</span><br><span class="line">//选择username列</span><br><span class="line"></span><br><span class="line">SELECT * FROM users WHERE is_active = TRUE;</span><br><span class="line">//用于指定过滤条件，只返回符合条件的行。</span><br><span class="line">在 WHERE 子句中，你可以使用各种条件例如:</span><br><span class="line">运算符（如 =, &lt;, &gt;, &lt;=, &gt;=, !=），</span><br><span class="line">逻辑运算符（如 AND, OR, NOT），</span><br><span class="line">通配符（如 %）,</span><br><span class="line">模糊匹配条件LIKE,</span><br><span class="line">IN条件</span><br><span class="line">SELECT * FROM users WHERE birthdate IN (&#x27;1990-01-01&#x27;, &#x27;1992-03-15&#x27;, &#x27;1993-05-03&#x27;);</span><br><span class="line">NOT条件</span><br><span class="line">BETWEEN AND条件,</span><br><span class="line">SELECT * FROM orders WHERE order_date BETWEEN &#x27;2023-01-01&#x27; AND &#x27;2023-12-31&#x27;;</span><br><span class="line">IS NULL,</span><br><span class="line">IS NOT NULL,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SELECT * FROM users ORDER BY column_name [ASC];</span><br><span class="line">//按照column列 ASC升序DESC降序</span><br><span class="line"></span><br><span class="line">SELECT * FROM users LIMIT 10;</span><br><span class="line">//限制返回的行数</span><br></pre></td></tr></table></figure>
+
+<p>UPDATE更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">格式</span><br><span class="line">UPDATE table_name</span><br><span class="line">SET column1 = value1, column2 = value2, ...</span><br><span class="line">WHERE condition;</span><br><span class="line">//column1要更新的列</span><br><span class="line">//value1 要更新的值</span><br><span class="line">//condition要更新的行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">更新单列</span><br><span class="line">UPDATE table_name</span><br><span class="line">SET column1 = 60000</span><br><span class="line">WHERE employee_id = 101;</span><br><span class="line"></span><br><span class="line">更新多列</span><br><span class="line">UPDATE table_name</span><br><span class="line">SET status = &#x27;Shipped&#x27;, ship_date = &#x27;2023-03-01&#x27;</span><br><span class="line">WHERE order_id = 1001;</span><br><span class="line"></span><br><span class="line">使用表达式更新值：</span><br><span class="line">UPDATE products</span><br><span class="line">SET price = price * 1.1</span><br><span class="line">WHERE category = &#x27;Electronics&#x27;;</span><br><span class="line"></span><br><span class="line">更新符合条件的所有行：</span><br><span class="line">UPDATE students</span><br><span class="line">SET status = &#x27;Graduated&#x27;;</span><br><span class="line"></span><br><span class="line">更新使用子查询的值：</span><br><span class="line">UPDATE customers</span><br><span class="line">SET total_purchases = (</span><br><span class="line">    SELECT SUM(amount)</span><br><span class="line">    FROM orders</span><br><span class="line">    WHERE orders.customer_id = customers.customer_id</span><br><span class="line">)</span><br><span class="line">WHERE customer_type = &#x27;Premium&#x27;;</span><br></pre></td></tr></table></figure>
+
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2024/06/10/%E6%95%B0%E6%8D%AE%E5%BA%93/">http://example.com/2024/06/10/%E6%95%B0%E6%8D%AE%E5%BA%93/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2024/06/16/%E5%85%AD%E6%9C%88%E5%91%A8%E8%AE%A1%E5%88%92/" title="六月周计划"><span>< PreviousPost</span><br><span class="prevTitle">六月周计划</span></a><a class="nextSlogan" href="/2024/06/01/VR%E5%AD%A6%E4%B9%A0/" title="VR"><span>NextPost ></span><br><span class="nextTitle">VR</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">1.1.</span> <span class="toc-text">创建表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-number">1.2.</span> <span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">1.3.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.4.</span> <span class="toc-text">查询</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
