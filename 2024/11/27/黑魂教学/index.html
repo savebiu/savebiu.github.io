@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>黑魂教学 · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">黑魂教学</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-11-27 21:19:59</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">1.5k</span> | Reading time: <span class="post-count">6</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="黑魂教学"><a href="#黑魂教学" class="headerlink" title="黑魂教学"></a>黑魂教学</h1><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>调用组件在Awake()中</p>
+<p>移动,身体控制放在FixedYpdate()中	物理引擎每秒刷新50次</p>
+<h3 id="虚拟轴"><a href="#虚拟轴" class="headerlink" title="虚拟轴"></a><strong>虚拟轴</strong></h3><p><code>private float targetDup;</code><br><code>private float targetDright;</code></p>
+<p><code>float targetDup = (Input.GetKey(KeyUp)?:1.0f:0) - (Input.GetKey(KeyDown)?:1.0f:0)</code><br><code>float targetDright = (Input.GetKey(KeyRight)?:1.0f:0) - (Input.GetKey(KeyLeft)?:1.0f:0)</code></p>
+<h3 id="SmoothDamp平滑-模拟摇杆"><a href="#SmoothDamp平滑-模拟摇杆" class="headerlink" title="SmoothDamp平滑,模拟摇杆"></a><strong>SmoothDamp平滑,模拟摇杆</strong></h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="built_in">float</span> velocityDup;</span><br><span class="line"><span class="keyword">private</span> <span class="built_in">float</span> velocityDright;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Mathf.SmoothDamp(current当前位置, target到达位置, currentVelocity当前速度, smoothTime所用时间);</span></span><br><span class="line">Dup = Mathf.SmoothDamp(Dup, targetDup, <span class="keyword">ref</span> velocityDup, <span class="number">0.1f</span>);</span><br><span class="line">Dright = Mathf.SmoothDamp(Dright, targetDright, <span class="keyword">ref</span> velocityDright, <span class="number">0.1f</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="软开关"><a href="#软开关" class="headerlink" title="软开关"></a><strong>软开关</strong></h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">bool</span> inputEnabled = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(!inputEnable)&#123;</span><br><span class="line">	targetDup = <span class="number">0</span>;</span><br><span class="line">	targetDright = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加人物"><a href="#添加人物" class="headerlink" title="添加人物"></a><strong>添加人物</strong></h3><p>1.添加人物到胶囊<br>2.移除胶囊的多边形渲染组件Capsule(MeshFilter), Mesh Renderer</p>
+<p>3.调整Capsule中心</p>
+<p><img src="https://savebiu.github.io/Image/image-20240727110306576.png" alt="image-20240727110306576"></p>
+<h3 id="动画控制树BlendTree"><a href="#动画控制树BlendTree" class="headerlink" title="动画控制树BlendTree"></a><strong>动画控制树BlendTree</strong></h3><p>Animator.SetFloat(string name, float value);&#x2F;&#x2F;将浮点值发送到动画器以激活过渡</p>
+<h3 id="旋转-使用forward当前方向与Dright左右方向的夹角向量来进行旋转"><a href="#旋转-使用forward当前方向与Dright左右方向的夹角向量来进行旋转" class="headerlink" title="旋转:使用forward当前方向与Dright左右方向的夹角向量来进行旋转"></a><strong>旋转</strong>:使用forward当前方向与Dright左右方向的夹角向量来进行旋转</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//transform.forward向前(z轴)移动</span></span><br><span class="line">model.transform.forward = Dright * transform.right + Dup * transform.forward;</span><br><span class="line">Dvec = Dright * transform.right + Dup * transform.forward;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="https://savebiu.github.io/Image/image-20240727154402334.png" alt="image-20240727154402334" style="zoom:60%;" />
+
+<p>斜方向移动会比正向移动快,因为斜方向是正方向的根号2倍,解决方法如下:</p>
+<p><img src="https://savebiu.github.io/Image//image-20240728144633512.png" alt="image-20240728144633512"></p>
+<h3 id="刚体Character-Controller和Rigidbody"><a href="#刚体Character-Controller和Rigidbody" class="headerlink" title="刚体Character Controller和Rigidbody"></a><strong>刚体</strong>Character Controller和Rigidbody</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//rigid.position += moveingVec * Time.fixedDeltaTime;//修改位置.需要乘以速度</span></span><br><span class="line">rigid.velocity = <span class="keyword">new</span> Vector3(movingVec.x, rigid.velocity.y, movingVec.z);<span class="comment">//velocity是刚体的速度向量,rigid.velocity.y为其添加Rigidbody的地心引力</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a><strong>移动</strong></h3><p><code>Time.fixedDeltatime</code>:以游戏中的秒计算,受timeScale影响	1&#x2F;50秒<br><code>Time.deltatime</code>:以秒计算,每秒移动物体10米	1&#x2F;60秒<br><code>Time.time</code>从游戏开始到现在的时间</p>
+<h3 id="触发器Trigger"><a href="#触发器Trigger" class="headerlink" title="触发器Trigger"></a>触发器Trigger</h3><p>1.<code>pressing signal</code></p>
+<p>2.<code>trigger once signal</code></p>
+<p>3.<code>double trigger</code></p>
+<h3 id="缓动lerp"><a href="#缓动lerp" class="headerlink" title="缓动lerp"></a>缓动lerp</h3><p>Vector3.Lerp(初始位置,终点位置, 插值);</p>
+<p>Slerp球上走弧, lerp球上走弦</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vector3 targetForward = Vector3.Slerp(model.transform.forward, pi.Dvec, <span class="number">0.3f</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓动SmootDamp"><a href="#缓动SmootDamp" class="headerlink" title="缓动SmootDamp"></a>缓动SmootDamp</h3><p><img src="https://savebiu.github.io/Image//image-20240811201233171.png" alt="image-20240811201233171"></p>
+<h3 id="缓动处理"><a href="#缓动处理" class="headerlink" title="缓动处理"></a>缓动处理</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前动作权重</span></span><br><span class="line"><span class="built_in">float</span> currentWeight = anim.GetLayerWeight(anim.GetLayerIndex(<span class="string">&quot;Attack&quot;</span>));</span><br><span class="line"><span class="comment">//缓动处理</span></span><br><span class="line">currentWeight = Mathf.Lerp(currentWeight, lerpTarget, <span class="number">0.4f</span>);</span><br><span class="line">anim.SetLayerWeight(anim.GetLayerIndex(<span class="string">&quot;Attack&quot;</span>), currentWeight);<span class="comment">//赋值给动画</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://savebiu.github.io/Image/image-20240809214048813.png" alt="image-20240809214048813"></p>
+<h3 id="清除信号-解决多动作动画的冲突"><a href="#清除信号-解决多动作动画的冲突" class="headerlink" title="清除信号-解决多动作动画的冲突"></a>清除信号-解决多动作动画的冲突</h3><p><img src="https://savebiu.github.io/Image/image-20240728154915725.png" alt="image-20240728154915725"></p>
+<h3 id="信号发送-用于优化"><a href="#信号发送-用于优化" class="headerlink" title="信号发送-用于优化"></a>信号发送-用于优化</h3><p>FSMOnEnter<strong>开始时</strong>将信号发送给物体, 元素就是接收的函数</p>
+<p>FSMOnExit<strong>结束时</strong>将信号发送给物体</p>
+<p>SendMessage(methodName)能调用Monobebaviour上的methodName方法<br>SendMessageUpwards()向父类调用</p>
+<p><img src="https://savebiu.github.io/Image/image-20240728162902819.png" alt="image-20240728162902819"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240728162416076.png" alt="image-20240728162416076"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="物体侦测Physics-OverlapCapsule"><a href="#物体侦测Physics-OverlapCapsule" class="headerlink" title="物体侦测Physics.OverlapCapsule"></a>物体侦测Physics.OverlapCapsule</h3><p><code>public CapsuleCollider capsule;</code></p>
+<p><img src="https://savebiu.github.io/Image/image-20240728201643630.png" alt="image-20240728201643630"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240728203908867.png" alt="image-20240728203908867"></p>
+<h3 id="人物抛物线飞出"><a href="#人物抛物线飞出" class="headerlink" title="人物抛物线飞出"></a>人物抛物线飞出</h3><p>设置速度锁</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="built_in">bool</span> lockPlanar = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (lockPlanar == <span class="literal">false</span>)</span><br><span class="line">&#123;</span><br><span class="line">    PlanarVec = pi.Dmag * model.transform.forward * WalkSpeed * (pi.run ? 			RunSpeed : <span class="number">1.0f</span>);<span class="comment">//transform.forward向前(z轴)移动</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnJumpEnter</span>()</span></span><br><span class="line">&#123;   </span><br><span class="line">    lockPlanar = <span class="literal">true</span>;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnGroundEnter</span>()</span></span><br><span class="line"> &#123;     </span><br><span class="line">     lockPlanar = <span class="literal">false</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://savebiu.github.io/Image/image-20240729142127691.png" alt="image-20240729142127691"></p>
+<h3 id="调整摩擦力防止人物黏在墙上"><a href="#调整摩擦力防止人物黏在墙上" class="headerlink" title="调整摩擦力防止人物黏在墙上"></a>调整摩擦力防止人物黏在墙上</h3><p>创建一个PhysicMaterial(物理材质),调整摩擦力</p>
+<p><img src="https://savebiu.github.io/Image/image-20240808212015253.png" alt="image-20240808212015253"></p>
+<p>在<code>Project Setting</code>设置中选择Physics并将制作好的Mtirial拖上去</p>
+<h3 id="动画中断"><a href="#动画中断" class="headerlink" title="动画中断"></a>动画中断</h3><p>在动画的transform中调整中断源为CurrentState</p>
+<h3 id="根运动-动画片段检视器RootTransformPostion"><a href="#根运动-动画片段检视器RootTransformPostion" class="headerlink" title="根运动-动画片段检视器RootTransformPostion"></a>根运动-动画片段检视器RootTransformPostion</h3><p><img src="https://savebiu.github.io/Image/image-20240730170308636.png" alt="image-20240730170308636"></p>
+<h3 id="翻滚"><a href="#翻滚" class="headerlink" title="翻滚"></a>翻滚</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//翻滚</span></span><br><span class="line"><span class="keyword">if</span> (rigid.velocity.magnitude &gt; <span class="number">5.0f</span>)<span class="comment">//返回向量长度</span></span><br><span class="line">&#123;</span><br><span class="line">    anim.SetBool(<span class="string">&quot;isRoll&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="冲量优化动作"><a href="#冲量优化动作" class="headerlink" title="冲量优化动作"></a>冲量优化动作</h3><p>通过velocity调整动作方向和速度</p>
+<p><img src="https://savebiu.github.io/Image/image-20240801110459831.png" alt="image-20240801110459831"></p>
+<h3 id="曲线调控动作"><a href="#曲线调控动作" class="headerlink" title="曲线调控动作"></a>曲线调控动作</h3><p>创建曲线需要先创建一个参数,再添加一个与参数名相同的Curves曲线</p>
+<p>曲线可以调整动作细节的播放比例</p>
+<p><img src="https://savebiu.github.io/Image/image-20240802142540946.png" alt="image-20240802142540946"></p>
+<h3 id="视角移动"><a href="#视角移动" class="headerlink" title="视角移动"></a>视角移动</h3><p><strong><code>Rotate</code>和<code>rotation</code>的区别</strong></p>
+<p>Rotate控制旋转角度<br>rotation获取旋转信息四元数</p>
+<p>使用角色控制跟随摄像机的旋转,使用角色下的子物体控制跟随相机的俯角</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> PlayerInput pi;</span><br><span class="line"><span class="comment">//左右上下的旋转速度</span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">float</span> horizontalSpeed = <span class="number">20.0f</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">float</span> verticalSpeed = <span class="number">20.0f</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> GameObject playerHandle;</span><br><span class="line"><span class="keyword">private</span> GameObject cameraHandle;</span><br><span class="line"><span class="comment">//欧拉中转值</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">float</span> tempEulerX = <span class="number">20.0f</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    cameraHandle = transform.parent.gameObject;</span><br><span class="line">    playerHandle = cameraHandle.transform.parent.gameObject;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    playerHandle.transform.Rotate(Vector3.up, pi.Jright * horizontalSpeed * Time.deltaTime);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//控制欧拉角度的速度</span></span><br><span class="line">    tempEulerX -= pi.Jup * verticalSpeed * Time.deltaTime;</span><br><span class="line">    <span class="comment">//限制欧拉角度</span></span><br><span class="line">    tempEulerX = Mathf.Clamp(tempEulerX, <span class="number">-20</span>,<span class="number">30</span>);</span><br><span class="line">    <span class="comment">//localEulerAngles只控制相对旋转s</span></span><br><span class="line">    cameraHandle.transform.localEulerAngles = <span class="keyword">new</span> Vector3(tempEulerX, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只控制摄像机旋转,模型不跟随</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>先获取模型位置</span><br><span class="line">model = playerHandle.GetComponent&lt;ActionController&gt;().model;</span><br><span class="line"><span class="number">2.</span>设置欧拉位置中转值</span><br><span class="line">Vector3 tempModelEuler = model.transfom.position.eulerAngles;</span><br><span class="line"><span class="number">3.</span>调整视角移动之后再将中转值赋回给model</span><br><span class="line">model.transform.eulerAngles = tempModeEuler;</span><br></pre></td></tr></table></figure>
+
+<p>相机追随</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">camera = Camera.main.gameObject;</span><br><span class="line"></span><br><span class="line"><span class="comment">//camera.transform.position = Vector3.Lerp(camera.transform.position, transform.position, 0.5f); </span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">camera.transform.position = Vector3.SmoothDamp(camera.transform.position, <span class="keyword">ref</span> cameraDampVelocity, cameraDampValue);</span><br><span class="line">camera.transform.eulerAngles = transform.eulerAngles;</span><br></pre></td></tr></table></figure>
+
+<h3 id="融合状态机"><a href="#融合状态机" class="headerlink" title="融合状态机"></a>融合状态机</h3><p>1.创建不同的动画层</p>
+<p>2.在Assets文件夹下创建一个Avatar Mask并获取权重,通过修改权重来实现层级过度</p>
+<p><img src="https://savebiu.github.io/Image/image-20240808174004010.png" alt="image-20240808174004010"></p>
+<h3 id="检查动画运行状态"><a href="#检查动画运行状态" class="headerlink" title="检查动画运行状态"></a>检查动画运行状态</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="built_in">bool</span> <span class="title">CheckState</span>(<span class="params"><span class="built_in">string</span> stateName, <span class="built_in">string</span> layerName = <span class="string">&quot;Base Layer&quot;</span></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//获取要查找的状态</span></span><br><span class="line">    <span class="built_in">int</span> layerIndex = anim.GetLayerIndex(layerName);</span><br><span class="line">    <span class="comment">//获取现在animation的状态,并比对是否与我所查的相同</span></span><br><span class="line">    <span class="built_in">bool</span> result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsName(stateName);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="动画控制"><a href="#动画控制" class="headerlink" title="动画控制"></a>动画控制</h3><p>注意:ResetTrigger 为函数名</p>
+<p>attack 是动画器中的参数</p>
+<p><img src="https://savebiu.github.io/Image/image-20240809214455632.png" alt="image-20240809214455632"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240809214407360.png" alt="image-20240809214407360"></p>
+<h3 id="应用根运动"><a href="#应用根运动" class="headerlink" title="应用根运动"></a>应用根运动</h3><p>应用根运动 会使模型按照动画移动,但是rigibody不会跟着移动</p>
+<p><img src="https://savebiu.github.io/Image/image-20240809214641206.png" alt="image-20240809214641206"></p>
+<p>所以需要使用代码 监听模型移动位置,再将其赋值给rigibody</p>
+<p><img src="https://savebiu.github.io/Image/image-20240809221719439.png" alt="image-20240809221719439"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240809221806269.png" alt="image-20240809221806269"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240809221740719.png" alt="image-20240809221740719"></p>
+<h3 id="Mirror"><a href="#Mirror" class="headerlink" title="Mirror"></a>Mirror</h3><p>转变动作方向</p>
+<p>代码调控mirror必须是bool类型的参数</p>
+<p><img src="https://savebiu.github.io/Image/image-20240810231032174.png" alt="image-20240810231032174"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240810231044817.png" alt="image-20240810231044817"></p>
+<h3 id="abstract-Class抽象类"><a href="#abstract-Class抽象类" class="headerlink" title="abstract Class抽象类"></a>abstract Class抽象类</h3><p>抽象类:不想被实例化的基类,只有子代能被实例化</p>
+<h3 id="隐藏鼠标"><a href="#隐藏鼠标" class="headerlink" title="隐藏鼠标"></a>隐藏鼠标</h3><p>Cursor.lockState &#x3D; CursorLockMode.Locked;</p>
+<h3 id="手柄按钮控制"><a href="#手柄按钮控制" class="headerlink" title="手柄按钮控制"></a>手柄按钮控制</h3><p><img src="https://savebiu.github.io/Image/image-20240814210245146.png" alt="image-20240814210245146"></p>
+<p>设置手柄类对象MyButton</p>
+<p><img src="https://savebiu.github.io/Image/image-20240814210550953.png" alt="image-20240814210550953"></p>
+<p>在PlayerInput类中获取按钮</p>
+<p><img src="https://savebiu.github.io/Image/image-20240814210431182.png" alt="image-20240814210431182"></p>
+<p>设置状态机OnPresed为按压启用一次，IsPressing是按压一直启用</p>
+<p><img src="https://savebiu.github.io/Image/image-20240814210643262.png" alt="image-20240814210643262"></p>
+<h3 id="连按与长按控制"><a href="#连按与长按控制" class="headerlink" title="连按与长按控制"></a>连按与长按控制</h3><p><img src="https://savebiu.github.io/Image/image-20240815113224052.png" alt="image-20240815113224052"></p>
+<p>IsExteding连按,按下一次后启动时间控制器</p>
+<h3 id="Lockon视角锁死"><a href="#Lockon视角锁死" class="headerlink" title="Lockon视角锁死"></a>Lockon视角锁死</h3><p><img src="E:/Git/Hexo/Image/image-20240822161318368.png" alt="image-20240822161318368"></p>
+<p>使用Physics,OverlapBox检测是否有目标物体可以锁定</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collider[] colliders = Physics.OverlapBox ( gameobject.transform.position, transform.localScale/<span class="number">2</span>, <span class="function">Layer <span class="title">Mask</span>(<span class="params">“图层”</span>))</span>;</span><br><span class="line"><span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;colliders.length)&#123;</span><br><span class="line">    print(colliders[i].name + i);</span><br><span class="line">    i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="待解决问题"><a href="#待解决问题" class="headerlink" title="待解决问题"></a>待解决问题</h2><p>1.角色的动态变化太明显</p>
+<p>使用缓动</p>
+<p>2.角色在Attack层仍能使用BaseLayer层的动作</p>
+<p>解决:1. 当Attack权重为1时,BaseLayer权重为0	BaseLaye权值不可调, Pass	</p>
+<p>2.设置检测标签!canAttack时才能jump, roll, jumpback, run</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2024/11/27/%E9%BB%91%E9%AD%82%E6%95%99%E5%AD%A6/">http://example.com/2024/11/27/%E9%BB%91%E9%AD%82%E6%95%99%E5%AD%A6/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2024/11/27/%E4%BC%9A%E8%AE%AE11_17/" title="会议11_17"><span>< PreviousPost</span><br><span class="prevTitle">会议11_17</span></a><a class="nextSlogan" href="/2024/11/27/%E5%A7%94%E6%89%98/" title="委托"><span>NextPost ></span><br><span class="nextTitle">委托</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%BB%91%E9%AD%82%E6%95%99%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">黑魂教学</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E8%BD%B4"><span class="toc-number">1.0.2.</span> <span class="toc-text">虚拟轴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SmoothDamp%E5%B9%B3%E6%BB%91-%E6%A8%A1%E6%8B%9F%E6%91%87%E6%9D%86"><span class="toc-number">1.0.3.</span> <span class="toc-text">SmoothDamp平滑,模拟摇杆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E5%BC%80%E5%85%B3"><span class="toc-number">1.0.4.</span> <span class="toc-text">软开关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%BA%BA%E7%89%A9"><span class="toc-number">1.0.5.</span> <span class="toc-text">添加人物</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6%E6%A0%91BlendTree"><span class="toc-number">1.0.6.</span> <span class="toc-text">动画控制树BlendTree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC-%E4%BD%BF%E7%94%A8forward%E5%BD%93%E5%89%8D%E6%96%B9%E5%90%91%E4%B8%8EDright%E5%B7%A6%E5%8F%B3%E6%96%B9%E5%90%91%E7%9A%84%E5%A4%B9%E8%A7%92%E5%90%91%E9%87%8F%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%97%8B%E8%BD%AC"><span class="toc-number">1.0.7.</span> <span class="toc-text">旋转:使用forward当前方向与Dright左右方向的夹角向量来进行旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9A%E4%BD%93Character-Controller%E5%92%8CRigidbody"><span class="toc-number">1.0.8.</span> <span class="toc-text">刚体Character Controller和Rigidbody</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8"><span class="toc-number">1.0.9.</span> <span class="toc-text">移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8Trigger"><span class="toc-number">1.0.10.</span> <span class="toc-text">触发器Trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%8A%A8lerp"><span class="toc-number">1.0.11.</span> <span class="toc-text">缓动lerp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%8A%A8SmootDamp"><span class="toc-number">1.0.12.</span> <span class="toc-text">缓动SmootDamp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%8A%A8%E5%A4%84%E7%90%86"><span class="toc-number">1.0.13.</span> <span class="toc-text">缓动处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E4%BF%A1%E5%8F%B7-%E8%A7%A3%E5%86%B3%E5%A4%9A%E5%8A%A8%E4%BD%9C%E5%8A%A8%E7%94%BB%E7%9A%84%E5%86%B2%E7%AA%81"><span class="toc-number">1.0.14.</span> <span class="toc-text">清除信号-解决多动作动画的冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E5%8F%91%E9%80%81-%E7%94%A8%E4%BA%8E%E4%BC%98%E5%8C%96"><span class="toc-number">1.0.15.</span> <span class="toc-text">信号发送-用于优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.0.16.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E4%BD%93%E4%BE%A6%E6%B5%8BPhysics-OverlapCapsule"><span class="toc-number">1.0.17.</span> <span class="toc-text">物体侦测Physics.OverlapCapsule</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E7%89%A9%E6%8A%9B%E7%89%A9%E7%BA%BF%E9%A3%9E%E5%87%BA"><span class="toc-number">1.0.18.</span> <span class="toc-text">人物抛物线飞出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E6%91%A9%E6%93%A6%E5%8A%9B%E9%98%B2%E6%AD%A2%E4%BA%BA%E7%89%A9%E9%BB%8F%E5%9C%A8%E5%A2%99%E4%B8%8A"><span class="toc-number">1.0.19.</span> <span class="toc-text">调整摩擦力防止人物黏在墙上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E4%B8%AD%E6%96%AD"><span class="toc-number">1.0.20.</span> <span class="toc-text">动画中断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E8%BF%90%E5%8A%A8-%E5%8A%A8%E7%94%BB%E7%89%87%E6%AE%B5%E6%A3%80%E8%A7%86%E5%99%A8RootTransformPostion"><span class="toc-number">1.0.21.</span> <span class="toc-text">根运动-动画片段检视器RootTransformPostion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BF%BB%E6%BB%9A"><span class="toc-number">1.0.22.</span> <span class="toc-text">翻滚</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B2%E9%87%8F%E4%BC%98%E5%8C%96%E5%8A%A8%E4%BD%9C"><span class="toc-number">1.0.23.</span> <span class="toc-text">冲量优化动作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B2%E7%BA%BF%E8%B0%83%E6%8E%A7%E5%8A%A8%E4%BD%9C"><span class="toc-number">1.0.24.</span> <span class="toc-text">曲线调控动作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E8%A7%92%E7%A7%BB%E5%8A%A8"><span class="toc-number">1.0.25.</span> <span class="toc-text">视角移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9E%8D%E5%90%88%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">1.0.26.</span> <span class="toc-text">融合状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E5%8A%A8%E7%94%BB%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-number">1.0.27.</span> <span class="toc-text">检查动画运行状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E6%8E%A7%E5%88%B6"><span class="toc-number">1.0.28.</span> <span class="toc-text">动画控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E6%A0%B9%E8%BF%90%E5%8A%A8"><span class="toc-number">1.0.29.</span> <span class="toc-text">应用根运动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mirror"><span class="toc-number">1.0.30.</span> <span class="toc-text">Mirror</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#abstract-Class%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">1.0.31.</span> <span class="toc-text">abstract Class抽象类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E9%BC%A0%E6%A0%87"><span class="toc-number">1.0.32.</span> <span class="toc-text">隐藏鼠标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9F%84%E6%8C%89%E9%92%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">1.0.33.</span> <span class="toc-text">手柄按钮控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8C%89%E4%B8%8E%E9%95%BF%E6%8C%89%E6%8E%A7%E5%88%B6"><span class="toc-number">1.0.34.</span> <span class="toc-text">连按与长按控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lockon%E8%A7%86%E8%A7%92%E9%94%81%E6%AD%BB"><span class="toc-number">1.0.35.</span> <span class="toc-text">Lockon视角锁死</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%85%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">待解决问题</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
