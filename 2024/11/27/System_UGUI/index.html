@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>UGUI · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">UGUI</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-12-03 16:59:41</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">644</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="UGUI"><a href="#UGUI" class="headerlink" title="UGUI"></a>UGUI</h1><h3 id="问题：如和制作动画按钮"><a href="#问题：如和制作动画按钮" class="headerlink" title="问题：如和制作动画按钮"></a>问题：如和制作动画按钮</h3><p>Unity UGUI Image 中文详解-Chinar-CSDN博客(<a target="_blank" rel="noopener" href="https://blog.csdn.net/ChinarCSDN/article/details/90312137">https://blog.csdn.net/ChinarCSDN/article/details/90312137</a>)</p>
+<h4 id="网格图片：用于构造和显示东西"><a href="#网格图片：用于构造和显示东西" class="headerlink" title="网格图片：用于构造和显示东西"></a>网格图片：用于构造和显示东西</h4><p><img src="https://savebiu.github.io/Image/image-20241123171439944.png" alt="image-20241123171439944"></p>
+<h4 id="lerp"><a href="#lerp" class="headerlink" title="lerp:"></a>lerp:</h4><p>一定要理解清楚Mathf.Lerp(float a, float b, float t)第三个参数t的意义，它是一个百分比，最小值有效值是0，最大有效值是1，如果超出了1，就取1，小于0则取0</p>
+<p>它表示从a到b之间，按照t这个百分比来取值，例如a是0，b是100，如果t是0.2,则该函数返回的值是20，如果t是1，该函数返回的值为100.</p>
+<h2 id="TEXT"><a href="#TEXT" class="headerlink" title="TEXT"></a>TEXT</h2><p><img src="https://i-blog.csdnimg.cn/blog_migrate/8050cb886391108851aeeb29f194a599.png" alt="在这里插入图片描述"></p>
+<img src="NoteImage/image-20241123193259410.png" alt="image-20241123193259410" style="zoom: 80%;" />
+
+<h2 id="IMAGE"><a href="#IMAGE" class="headerlink" title="IMAGE"></a>IMAGE</h2><p><img src="https://i-blog.csdnimg.cn/blog_migrate/1b9973798ff8218533ec6d37512c345e.gif" alt="在这里插入图片描述"></p>
+<h2 id="BUTTON"><a href="#BUTTON" class="headerlink" title="BUTTON"></a>BUTTON</h2><p>1 先获取到 目标对象的Button 组件<br>2 通过.onClick.Addlistener(函数) 的方式进行动态添加<br>3 如函数具有参数，可通过Lambda表达式 .onClick.AddListener(Lambda表达式) 动态添加<br>4 如函数具有参数，可通过委托 .onClick.AddListener(delegate {函数;}) 动态添加</p>
+<p><img src="https://savebiu.github.io/Image/d4cd1a9667ff9fdacaf3346b7d7d377.png" alt="d4cd1a9667ff9fdacaf3346b7d7d377"></p>
+<p><img src="https://savebiu.github.io/Image/image-20241123193749867.png" alt="image-20241123193749867"></p>
+<h2 id="Toggle"><a href="#Toggle" class="headerlink" title="Toggle"></a>Toggle</h2><p>Graphic ：用来控制 Toggle 开关图片的显示&#x2F;隐藏</p>
+<p>IsOn ：用来表示 Toggle 开关状态</p>
+<p>Group ：用来表示 Toggle 所属开关组&#x2F;群</p>
+<p><img src="https://savebiu.github.io/Image/cf7cbcdbfd562d7b82718d39a30d5e0.jpg" alt="cf7cbcdbfd562d7b82718d39a30d5e0"></p>
+<h2 id="Dropdown"><a href="#Dropdown" class="headerlink" title="Dropdown"></a>Dropdown</h2><p><img src="https://savebiu.github.io/Image/a6110050af0224ca7859613302c675e.jpg" alt="a6110050af0224ca7859613302c675e"></p>
+<h2 id="InputField"><a href="#InputField" class="headerlink" title="InputField"></a>InputField</h2><p><img src="https://savebiu.github.io/Image/4597f32d95e055681f1ebc0438c793b.png" alt="4597f32d95e055681f1ebc0438c793b"></p>
+<h4 id="内容类型"><a href="#内容类型" class="headerlink" title="内容类型"></a>内容类型</h4><p><img src="https://savebiu.github.io/Image/image-20241125203515050.png" alt="image-20241125203515050"></p>
+<h4 id="行类型"><a href="#行类型" class="headerlink" title="行类型"></a>行类型</h4><p><img src="https://savebiu.github.io/Image/image-20241125203655313.png" alt="image-20241125203655313"></p>
+<h2 id="RawImage"><a href="#RawImage" class="headerlink" title="RawImage"></a>RawImage</h2><p>现在Project面板创建Render Texture,再在RawImage上面添加VideoPlayer组件即可在RawImage上播放视频</p>
+<h2 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h2><h4 id="Attribute属性"><a href="#Attribute属性" class="headerlink" title="Attribute属性"></a>Attribute属性</h4><h5 id="Screen-Space-Overlay–覆盖模式："><a href="#Screen-Space-Overlay–覆盖模式：" class="headerlink" title="Screen Space-Overlay–覆盖模式："></a>Screen Space-Overlay–覆盖模式：</h5><p>表示 <code>Canvas</code> 下的所有的 &#96;UI永远位于屏幕的前面，覆盖掉相机渲染场景显示的元素。<img src="https://savebiu.github.io/Image/image-20241125210957605.png" alt="image-20241125210957605"></p>
+<p><img src="https://savebiu.github.io/Image/image-20241125211053723.png" alt="image-20241125211053723"></p>
+<h5 id="Screen-Space-Camera-——-相机模式"><a href="#Screen-Space-Camera-——-相机模式" class="headerlink" title="Screen Space-Camera —— 相机模式"></a>Screen Space-Camera —— 相机模式</h5><p><strong>这种渲染模式 <code>Canvas</code> 和 摄像机之间有一定的距离 , <code>可以在摄像机和 Canvas之间放置一些模型或粒子特效</code></strong></p>
+<p><img src="https://savebiu.github.io/Image/image-20241125211347859.png" alt="image-20241125211347859"></p>
+<p><img src="https://savebiu.github.io/Image/image-20241125211356205.png" alt="image-20241125211356205"></p>
+<h5 id="World-Space-——-世界模式"><a href="#World-Space-——-世界模式" class="headerlink" title="World Space —— 世界模式"></a>World Space —— 世界模式</h5><p><strong>这种模式下 <code>Canvas</code> 就和普通的 3D 物体一样了 , <code>可以控制它的大小,旋转,缩放等</code>，其属性与 <code>Camera</code> 模式一致</strong></p>
+<h4 id="Canvas-Scaler-——-画布的缩放"><a href="#Canvas-Scaler-——-画布的缩放" class="headerlink" title="Canvas Scaler —— 画布的缩放"></a>Canvas Scaler —— 画布的缩放</h4><h5 id="Constant-Pixer-Size-——-恒定像素"><a href="#Constant-Pixer-Size-——-恒定像素" class="headerlink" title="Constant Pixer Size —— 恒定像素"></a>Constant Pixer Size —— 恒定像素</h5><p><code>这种模式下 UI以像素为大小，同样的像素在不同的分辨率下尺寸不一样</code></p>
+<p><img src="https://savebiu.github.io/Image/image-20241125211753642.png" alt="image-20241125211753642"></p>
+<h5 id="Scale-With-Screen-Size-——-屏幕尺寸比例"><a href="#Scale-With-Screen-Size-——-屏幕尺寸比例" class="headerlink" title="Scale With Screen Size —— 屏幕尺寸比例"></a>Scale With Screen Size —— 屏幕尺寸比例</h5><p>这种模式下<code>UI</code>元素的位置与大小按当前屏幕分辨率和设置的分辨率来取相对值。</p>
+<p>若当前屏幕分辨率大于&#x2F;小于设置屏幕分辨率，则Canvas依然是按设置屏幕分辨率布局，然后放大&#x2F;缩小来适应屏幕，这会导致 UI 被不均匀的拉伸或缩小，导致界面混乱</p>
+<p><img src="https://savebiu.github.io/Image/image-20241125211908271.png" alt="image-20241125211908271"></p>
+<h5 id="Constant-Physical-Size-——-恒定尺寸"><a href="#Constant-Physical-Size-——-恒定尺寸" class="headerlink" title="Constant Physical Size —— 恒定尺寸"></a>Constant Physical Size —— 恒定尺寸</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/gz_huangzl/article/details/52484611">https://blog.csdn.net/gz_huangzl/article/details/52484611</a></p>
+<p>这种模式下 UI以像素为大小，在不同的分辨率下尺寸不一样</p>
+<p><img src="https://savebiu.github.io/Image/image-20241125211946623.png" alt="image-20241125211946623"></p>
+<h4 id="Graphic-Raycaster-——-射线检测"><a href="#Graphic-Raycaster-——-射线检测" class="headerlink" title="Graphic Raycaster —— 射线检测"></a>Graphic Raycaster —— 射线检测</h4><p><img src="https://savebiu.github.io/Image/image-20241125212055573.png" alt="image-20241125212055573"></p>
+<p><img src="https://savebiu.github.io/Image/image-20241125212116115.png" alt="image-20241125212116115"></p>
+<p><img src="https://savebiu.github.io/Image/image-20241125212201685.png" alt="image-20241125212201685"></p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2024/11/27/System_UGUI/">http://example.com/2024/11/27/System_UGUI/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2024/11/27/%E5%A7%94%E6%89%98/" title="委托"><span>< PreviousPost</span><br><span class="prevTitle">委托</span></a><a class="nextSlogan" href="/2024/09/29/%E4%BC%9A%E8%AE%AE9_29/" title="会议9_29"><span>NextPost ></span><br><span class="nextTitle">会议9_29</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UGUI"><span class="toc-number">1.</span> <span class="toc-text">UGUI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E5%A6%82%E5%92%8C%E5%88%B6%E4%BD%9C%E5%8A%A8%E7%94%BB%E6%8C%89%E9%92%AE"><span class="toc-number">1.0.1.</span> <span class="toc-text">问题：如和制作动画按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E6%A0%BC%E5%9B%BE%E7%89%87%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%9E%84%E9%80%A0%E5%92%8C%E6%98%BE%E7%A4%BA%E4%B8%9C%E8%A5%BF"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">网格图片：用于构造和显示东西</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lerp"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">lerp:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TEXT"><span class="toc-number">1.1.</span> <span class="toc-text">TEXT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IMAGE"><span class="toc-number">1.2.</span> <span class="toc-text">IMAGE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BUTTON"><span class="toc-number">1.3.</span> <span class="toc-text">BUTTON</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toggle"><span class="toc-number">1.4.</span> <span class="toc-text">Toggle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dropdown"><span class="toc-number">1.5.</span> <span class="toc-text">Dropdown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InputField"><span class="toc-number">1.6.</span> <span class="toc-text">InputField</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">内容类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.0.2.</span> <span class="toc-text">行类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RawImage"><span class="toc-number">1.7.</span> <span class="toc-text">RawImage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Canvas"><span class="toc-number">1.8.</span> <span class="toc-text">Canvas</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Attribute%E5%B1%9E%E6%80%A7"><span class="toc-number">1.8.0.1.</span> <span class="toc-text">Attribute属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Screen-Space-Overlay%E2%80%93%E8%A6%86%E7%9B%96%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.8.0.1.1.</span> <span class="toc-text">Screen Space-Overlay–覆盖模式：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Screen-Space-Camera-%E2%80%94%E2%80%94-%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.8.0.1.2.</span> <span class="toc-text">Screen Space-Camera —— 相机模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#World-Space-%E2%80%94%E2%80%94-%E4%B8%96%E7%95%8C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.8.0.1.3.</span> <span class="toc-text">World Space —— 世界模式</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Canvas-Scaler-%E2%80%94%E2%80%94-%E7%94%BB%E5%B8%83%E7%9A%84%E7%BC%A9%E6%94%BE"><span class="toc-number">1.8.0.2.</span> <span class="toc-text">Canvas Scaler —— 画布的缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Constant-Pixer-Size-%E2%80%94%E2%80%94-%E6%81%92%E5%AE%9A%E5%83%8F%E7%B4%A0"><span class="toc-number">1.8.0.2.1.</span> <span class="toc-text">Constant Pixer Size —— 恒定像素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Scale-With-Screen-Size-%E2%80%94%E2%80%94-%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8%E6%AF%94%E4%BE%8B"><span class="toc-number">1.8.0.2.2.</span> <span class="toc-text">Scale With Screen Size —— 屏幕尺寸比例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Constant-Physical-Size-%E2%80%94%E2%80%94-%E6%81%92%E5%AE%9A%E5%B0%BA%E5%AF%B8"><span class="toc-number">1.8.0.2.3.</span> <span class="toc-text">Constant Physical Size —— 恒定尺寸</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Graphic-Raycaster-%E2%80%94%E2%80%94-%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B"><span class="toc-number">1.8.0.3.</span> <span class="toc-text">Graphic Raycaster —— 射线检测</span></a></li></ol></li></ol></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
