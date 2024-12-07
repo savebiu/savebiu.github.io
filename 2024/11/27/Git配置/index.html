@@ -97,7 +97,7 @@
   }
 }( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
   i.fa.fa-comment
-  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Git配置</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-12-03 16:52:19</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">680</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>配置用户名	$ git config – global user.name </p>
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Git配置</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-12-06 21:55:30</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">680</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>配置用户名	$ git config – global user.name </p>
 <p>配置邮箱	$ git config – global user.name</p>
 <p>$ git config –global –list	查询到自己设置的用户名和邮箱</p>
 <p>这个配置文件会出现在C:\Users\Administrator目录下的 .gitconfig 文件中</p>
@@ -106,7 +106,7 @@
 <p>ssh-add</p>
 <p>$ list 查看秘钥并使用vi打开.pub文件并复制秘钥到GitHub</p>
 <p>创建一个仓库文件夹并使用Git打开</p>
-<p><img src="https://savebiu.github.io/Image/image-20240427134218547-1726742283719-8.png" alt="image-20240427134218547"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240427134218547.png" alt="image-20240427134218547"></p>
 <p>$ git init	创建仓库</p>
 <h2 id="建立远程连接"><a href="#建立远程连接" class="headerlink" title="建立远程连接"></a>建立远程连接</h2><p>测试上传代码，在需要上传的文件目录下右键然后点击Git Bash Here，第一次提交的时候需要填写远程仓库url和对应远程分支名：</p>
 <p>$ git add .git co</p>
@@ -114,11 +114,11 @@
 <p>$ git remote add origin ‘远程仓库url’</p>
 <p>$ git push -u origin main</p>
 <p>复制SSH链接</p>
-<p>$ git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:savebiu&#x2F;repo.git	git clone 链接	</p>
+<p>$ git clone <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#x6d;</a>:savebiu&#x2F;repo.git	git clone 链接	</p>
 <h3 id="错误提示：error-remote-origin-already-exists"><a href="#错误提示：error-remote-origin-already-exists" class="headerlink" title="错误提示：	error: remote origin already exists."></a>错误提示：	error: remote origin already exists.</h3><p>1、先输入git remote rm origin 删除关联的origin的远程库<br>2、关联自己的仓库 git remote add origin <a target="_blank" rel="noopener" href="https://gitee.com/xxxxxx.git">https://gitee.com/xxxxxx.git</a><br>3、最后git push origin master，这样就推送到自己的仓库了</p>
-<p><img src="https://savebiu.github.io/Image/image-20240427141027993-1726742291833-11.png" alt="image-20240427141027993"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240427141027993.png" alt="image-20240427141027993"></p>
 <h2 id="建立Hexo环境"><a href="#建立Hexo环境" class="headerlink" title="建立Hexo环境"></a>建立Hexo环境</h2><p>先安装Node.js并在控制台cmd下检测是否安装成功</p>
-<p><img src="https://savebiu.github.io/Image/image-20240427143215839-1726742296436-14.png" alt="image-20240427143215839"></p>
+<p><img src="https://savebiu.github.io/Image/image-20240427143215839.png" alt="image-20240427143215839"></p>
 <p>创建Hexo文件夹并用Git打开</p>
 <p>$ npm install -g hexo-cli	安装hexo</p>
 <p>$ hexo init	初始化</p>
@@ -128,7 +128,7 @@
 <p><strong>安装 hexo-deployer-git</strong>插件：</p>
 <p>npm install hexo-deployer-git –save</p>
 <p><strong>修改 _config.yml</strong> 文件末尾的 Deployment 部分，修改成如下：</p>
-<p>deploy:<br>  type: git<br>  repository: <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>:用户名&#x2F;用户名.github.io.git<br>  branch: master</p>
+<p>deploy:<br>  type: git<br>  repository: <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:用户名&#x2F;用户名.github.io.git<br>  branch: master</p>
 <p>运行 <code>hexo d</code> 将网站上传部署到 GitHub Pages</p>
 <h3 id="创建-SSH-密匙"><a href="#创建-SSH-密匙" class="headerlink" title="创建 SSH 密匙"></a>创建 SSH 密匙</h3><p>ssh-keygen -t rsa -C “你的 GitHub 邮箱”</p>
 <p>粘贴复制的 id_rsa.pub 内容到 Key 中</p>
