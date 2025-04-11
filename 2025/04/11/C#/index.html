@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>C# · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">C#</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2025-04-11 15:22:03</span></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">966</span> | Reading time: <span class="post-count">4</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h3 id="值和引用类型"><a href="#值和引用类型" class="headerlink" title="值和引用类型"></a>值和引用类型</h3><p>值类型只需要一段内存间（实际数据）<br>​引用类型需要两段内存（实际数据，引用）<br>​引用对象的数据部分是中存放在堆中</p>
+<h3 id="静态类型和关键字"><a href="#静态类型和关键字" class="headerlink" title="静态类型和关键字"></a>静态类型和关键字</h3><p>静态类型：定义后不可更改</p>
+<p>动态类型：直到运行时才会被解析</p>
+<h2 id="堆和栈"><a href="#堆和栈" class="headerlink" title="堆和栈"></a>堆和栈</h2><p>栈：先进后出，只能从栈顶插入和删除，入栈push, 出栈pop，必须有序输出</p>
+<p>堆：一块内存区域，可按任意顺序插入删除，CLR执行环境会自动清无主对象，GC是垃圾收集器，堆要有序输出必须使用应用<br>​</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类是面向对象的逻辑相关的数据和函数的封装，每一种类都可以代表一种事物</p>
+<p>从类的外部访问成员需要包括变量名和成员名</p>
+<h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><p>字段是申明在类中</p>
+<p>类型外部不能申明全局变量</p>
+<h4 id="隐式和显式字段的初始化"><a href="#隐式和显式字段的初始化" class="headerlink" title="隐式和显式字段的初始化"></a>隐式和显式字段的初始化</h4><p>显式：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> i= <span class="number">7</span>；</span><br></pre></td></tr></table></figure>
+
+<p>隐式：未赋值，默认值为0，bool型为false, 引用类型为null</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> i;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类的实例化"><a href="#类的实例化" class="headerlink" title="类的实例化"></a>类的实例化</h3><p>没有实例化的类的值是未被定义的，new运算符能为任意指定类型实例分配并初始化内存，初始化内存后才能进行存储</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Dealer theDealer;	<span class="comment">//申明变量引用</span></span><br><span class="line">theDealer = <span class="keyword">new</span> Dealer();	<span class="comment">//分配内存并赋值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//合并</span></span><br><span class="line">Dealer theDealer = <span class="keyword">new</span> Dealer();</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h3><p>private 私有</p>
+<p>public 公有</p>
+<p>protect 受保护</p>
+<p>internal 内部的</p>
+<p>protect internal 受保护内部的</p>
+<p>private是默认访问级别</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>方法是具有名称的可执行代码块，方法申明在函数内部，C#中没有默认返回类型</p>
+<p>组成：返回类型 名称 参数列表 方法体</p>
+<p>字段与局部变量的区别：字段定义在类中，在本类可用，this是字段访问符，局部变量属于函数，从定义开始，自离开函数结束</p>
+<p>var 表示任何可以从初始化语句的右边推断类型</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> total = <span class="number">15</span>;		<span class="comment">//此类型推断为int</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="值参数"><a href="#值参数" class="headerlink" title="值参数"></a>值参数</h3><p>值参数是把实参赋值给形参，做实参之前变量必须被赋值（除非是输出参数）</p>
+<p>ref 引用参数</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> y = <span class="number">9</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyMethod</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> val</span>)</span>&#123;...&#125;</span><br><span class="line">MyMethod(<span class="keyword">ref</span> y);</span><br></pre></td></tr></table></figure>
+
+<p>out 输出参数，从方法体将数据传出到调用代码</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> y = <span class="number">9</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyMethod</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> val</span>)</span>&#123;...&#125;</span><br><span class="line">MyMethod(<span class="keyword">out</span> y);</span><br></pre></td></tr></table></figure>
+
+<p>params 参数数组</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ListInts</span>(<span class="params"><span class="keyword">params</span> <span class="built_in">int</span>[] arr</span>)</span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用方法一</span></span><br><span class="line">ListInts(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line"><span class="comment">//调用方法二</span></span><br><span class="line"><span class="built_in">int</span>[] intArr = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>&#125;;</span><br><span class="line">ListInts(intArr)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h2><h2 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h2><p>委托（Delegate）是对某个方法的引用的一种引用类型变量，特别用于实现事件和回调方法。引用可在运行时被改变。</p>
+<p>没有返回值用Action&lt;&gt;委托，有返回值用Func&lt;&gt;泛型委托。</p>
+<p>假设有一个委托如下：</p>
+<p>public delegate int MyDelegate(string s);该委托可用于任何带单一string参数的方法</p>
+<p>声明委托：</p>
+<p>delegate <return typr> <delegate-name> &lt; parameter list&gt;</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">NumberChanger</span>(<span class="params"><span class="built_in">int</span> n</span>)</span>;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title">DelegateAppl</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">class</span> <span class="title">TestDelegate</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">static</span> <span class="built_in">int</span> num = <span class="number">10</span>;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">AddNum</span>(<span class="params"><span class="built_in">int</span> p</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">         num += p;</span><br><span class="line">         <span class="keyword">return</span> num;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">MultNum</span>(<span class="params"><span class="built_in">int</span> q</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">         num *= q;</span><br><span class="line">         <span class="keyword">return</span> num;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">getNum</span>()</span></span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">return</span> num;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">         <span class="comment">// 创建委托实例</span></span><br><span class="line">         NumberChanger nc1 = <span class="keyword">new</span> NumberChanger(AddNum);</span><br><span class="line">         NumberChanger nc2 = <span class="keyword">new</span> NumberChanger(MultNum);</span><br><span class="line">         <span class="comment">// 使用委托对象调用方法</span></span><br><span class="line">         nc1(<span class="number">25</span>);</span><br><span class="line">         Console.WriteLine(<span class="string">&quot;Value of Num: &#123;0&#125;&quot;</span>, getNum());</span><br><span class="line">         nc2(<span class="number">5</span>);</span><br><span class="line">         Console.WriteLine(<span class="string">&quot;Value of Num: &#123;0&#125;&quot;</span>, getNum());</span><br><span class="line">         Console.ReadKey();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多播"><a href="#多播" class="headerlink" title="多播"></a>多播</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">NumberChanger</span>(<span class="params"><span class="built_in">int</span> n</span>)</span>;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title">DelegateAppl</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">class</span> <span class="title">TestDelegate</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">static</span> <span class="built_in">int</span> num = <span class="number">10</span>;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">AddNum</span>(<span class="params"><span class="built_in">int</span> p</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">         num += p;</span><br><span class="line">         <span class="keyword">return</span> num;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">MultNum</span>(<span class="params"><span class="built_in">int</span> q</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">         num *= q;</span><br><span class="line">         <span class="keyword">return</span> num;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">getNum</span>()</span></span><br><span class="line">      &#123;</span><br><span class="line">         <span class="keyword">return</span> num;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">         <span class="comment">// 创建委托实例</span></span><br><span class="line">         NumberChanger nc;</span><br><span class="line">         NumberChanger nc1 = <span class="keyword">new</span> NumberChanger(AddNum);</span><br><span class="line">         NumberChanger nc2 = <span class="keyword">new</span> NumberChanger(MultNum);</span><br><span class="line">         nc = nc1;</span><br><span class="line">         nc += nc2;</span><br><span class="line">         <span class="comment">// 调用多播</span></span><br><span class="line">         nc(<span class="number">5</span>);</span><br><span class="line">         Console.WriteLine(<span class="string">&quot;Value of Num: &#123;0&#125;&quot;</span>, getNum());</span><br><span class="line">         Console.ReadKey();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2025/04/11/C#/">http://example.com/2025/04/11/C#/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2025/04/11/Controler_Study_2D/" title="Controler_Study_2D"><span>< PreviousPost</span><br><span class="prevTitle">Controler_Study_2D</span></a><a class="nextSlogan" href="/2025/04/11/IO%E6%B5%81/" title="IO流"><span>NextPost ></span><br><span class="nextTitle">IO流</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">值和引用类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.</span> <span class="toc-text">静态类型和关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%92%8C%E6%A0%88"><span class="toc-number"></span> <span class="toc-text">堆和栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5"><span class="toc-number">1.</span> <span class="toc-text">字段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E5%92%8C%E6%98%BE%E5%BC%8F%E5%AD%97%E6%AE%B5%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">隐式和显式字段的初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">类的实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">访问修饰符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number"></span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">值参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B"><span class="toc-number"></span> <span class="toc-text">单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%94%E6%89%98"><span class="toc-number"></span> <span class="toc-text">委托</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%92%AD"><span class="toc-number"></span> <span class="toc-text">多播</span></a></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

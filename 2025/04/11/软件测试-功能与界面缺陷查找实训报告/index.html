@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>软件测试-功能与界面缺陷查找实训报告 · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">软件测试-功能与界面缺陷查找实训报告</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2025-04-11 15:25:22</span></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">964</span> | Reading time: <span class="post-count">3</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h1 id="软件测试-功能与界面缺陷查找实训报告"><a href="#软件测试-功能与界面缺陷查找实训报告" class="headerlink" title="软件测试-功能与界面缺陷查找实训报告"></a>软件测试-功能与界面缺陷查找实训报告</h1><p>Client 用户输入 获取自身和是服务器数据 对数据进行加工处理</p>
+<p>Server 接受并加工处理Client端数据 对数据进行持久化保存(数据库存储) 用于集中共享信息，协同操作</p>
+<p>Browser 与Client差不多,但是无法对本地文件进行处理,也无法进行持久化存储</p>
+<p>c&#x2F;s 客户端&#x2F;服务器模式 –优势:本地持久化存储</p>
+<p>b&#x2F;s 浏览器&#x2F;客户端 沙箱机制-保证了文件安全性，不允许对文件进行操作 –优势: 不用在本地部署软件,更新服务器即可更新版本</p>
+<h2 id="一、-基本信息"><a href="#一、-基本信息" class="headerlink" title="一、*基本信息*"></a><strong>一、</strong><em>*基本信息*</em></h2><table>
+<thead>
+<tr>
+<th>名称：</th>
+<th>功能与界面缺陷查找</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>时间：</td>
+<td>2025年3月28日</td>
+</tr>
+<tr>
+<td>测试人：</td>
+<td>蒲立华</td>
+</tr>
+<tr>
+<td>学号：</td>
+<td>224081245</td>
+</tr>
+<tr>
+<td>年级专业班级：</td>
+<td>22级 计算机科学与技术专业 2班</td>
+</tr>
+<tr>
+<td>目标:</td>
+<td>掌握功能与界面缺陷查找的方法和流程。提高测试设计能力和缺陷分析能力。</td>
+</tr>
+</tbody></table>
+<h2 id="二、-测试内容"><a href="#二、-测试内容" class="headerlink" title="二、*测试内容*"></a><strong>二、</strong><em><strong>*测试内容*</strong></em></h2><h3 id="1．-功能缺陷查找"><a href="#1．-功能缺陷查找" class="headerlink" title="1．*功能缺陷查找*"></a><strong>1．</strong><em><strong>*功能缺陷查找*</strong></em></h3><h4 id="（1）-测试思路及测试环境"><a href="#（1）-测试思路及测试环境" class="headerlink" title="（1）*测试思路及测试环境*"></a><strong>（1）</strong><em><strong>*测试思路及测试环境*</strong></em></h4><p>测试思路：说明的具体内容</p>
+<p>测试环境：说明的具体内容</p>
+<h4 id="（2）-缺陷列表"><a href="#（2）-缺陷列表" class="headerlink" title="（2）*缺陷列表*"></a><strong>（2）</strong><em><strong>*缺陷列表*</strong></em></h4><table>
+<thead>
+<tr>
+<th><em><strong>*缺陷编号*</strong></em></th>
+<th><em><strong>*缺陷标题*</strong></em></th>
+<th><em><strong>*所属模块*</strong></em></th>
+<th><em><strong>*缺陷描述*</strong></em></th>
+<th><em><strong>*严重*</strong></em><em><strong>*程度*</strong></em></th>
+<th><em><strong>*优先级*</strong></em></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DEF-001</td>
+<td>登录功能失效</td>
+<td>用户模块</td>
+<td>输入正确用户名和密码后无法登录</td>
+<td>严重</td>
+<td>高</td>
+</tr>
+<tr>
+<td>DEF-002</td>
+<td>文件上传失败</td>
+<td>文件管理模块</td>
+<td>上传文件时显示“Internal Server Error”</td>
+<td>严重</td>
+<td>高</td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="（3）-缺陷详细描述"><a href="#（3）-缺陷详细描述" class="headerlink" title="（3）*缺陷详细描述*"></a><strong>（3）</strong><em><strong>*缺陷详细描述*</strong></em></h4><h5 id="缺陷编号：DEF-001"><a href="#缺陷编号：DEF-001" class="headerlink" title="缺陷编号：DEF-001"></a><strong>缺陷编号：DEF-001</strong></h5><p>缺陷标题：登录功能失效</p>
+<p>测试对象：教务管理系统 <a target="_blank" rel="noopener" href="http://10.1.1.149/">http://10.1.1.149</a></p>
+<p>缺陷描述：输入正确的用户名和密码后无法登录，页面显示“Your username is invalid!”。</p>
+<p>操作步骤：打开应用登录页面,输入用户名“testuser”和密码“123456”,点击“登录”按钮。</p>
+<p>预期结果：应成功登录并跳转到主页。</p>
+<p>实际结果：页面显示错误信息，无法登录。</p>
+<p>严重程度：严重</p>
+<p>优先级：高</p>
+<p>发现时间：2025-03-10</p>
+<h5 id="缺陷编号：DEF-00-2"><a href="#缺陷编号：DEF-00-2" class="headerlink" title="*缺陷编号：DEF-00**2*"></a><em><strong>*缺陷编号：DEF-00*</strong></em><em><strong>*2*</strong></em></h5><p>缺陷标题：文件上传失败</p>
+<p>测试对象：教务管理系统 <a target="_blank" rel="noopener" href="http://10.1.1.149/">http://10.1.1.149</a></p>
+<p>缺陷描述：上传文件时显示“Internal Server Error”。</p>
+<p>操作步骤：填写重现缺陷的具体操作步骤</p>
+<p>预期结果：</p>
+<p>实际结果：</p>
+<p>严重程度：</p>
+<p>优先级：</p>
+<p>发现时间：</p>
+<h2 id="2．-界面缺陷查找"><a href="#2．-界面缺陷查找" class="headerlink" title="2．*界面缺陷查找*"></a><strong>2．</strong><em><strong>*界面缺陷查找*</strong></em></h2><h3 id="（1）-测试思路及测试环境-1"><a href="#（1）-测试思路及测试环境-1" class="headerlink" title="（1）*测试思路及测试环境*"></a><strong>（1）</strong><em><strong>*测试思路及测试环境*</strong></em></h3><p>测试思路：说明的具体内容</p>
+<p>测试环境：说明的具体内容</p>
+<h4 id="（2）-缺陷列表-1"><a href="#（2）-缺陷列表-1" class="headerlink" title="（2）*缺陷列表*"></a><strong>（2）</strong><em><strong>*缺陷列表*</strong></em></h4><table>
+<thead>
+<tr>
+<th><em><strong>*缺陷编号*</strong></em></th>
+<th><em><strong>*缺陷标题*</strong></em></th>
+<th><em><strong>*所属模块*</strong></em></th>
+<th><em><strong>*缺陷描述*</strong></em></th>
+<th><em><strong>*严重*</strong></em><em><strong>*程度*</strong></em></th>
+<th><em><strong>*优先级*</strong></em></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DEF-UI01</td>
+<td>标题未居中</td>
+<td>主页</td>
+<td>页面标题未居中显示</td>
+<td>轻微</td>
+<td>高</td>
+</tr>
+<tr>
+<td>DEF-UI02</td>
+<td>按钮颜色不一致</td>
+<td>登录页面</td>
+<td>部分按钮颜色与其他按钮不一致</td>
+<td>轻微</td>
+<td>高</td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="（3）-缺陷详细描述-1"><a href="#（3）-缺陷详细描述-1" class="headerlink" title="（3）*缺陷详细描述*"></a><strong>（3）</strong><em><strong>*缺陷详细描述*</strong></em></h4><h4 id="缺陷编号：DEF-UI-01"><a href="#缺陷编号：DEF-UI-01" class="headerlink" title="*缺陷编号：DEF-**UI**01*"></a><em><strong>*缺陷编号：DEF-*</strong></em><em><strong>*UI*</strong></em><em><strong>*01*</strong></em></h4><p>缺陷标题：标题未居中</p>
+<p>测试对象：教务管理系统 <a target="_blank" rel="noopener" href="http://10.1.1.149/">http://10.1.1.149</a></p>
+<p>缺陷描述：页面标题偏向左侧，未居中显示。。</p>
+<p>操作步骤：打开应用主页，查看页面顶部标题。</p>
+<p>预期结果：标题应居中显示。</p>
+<p>实际结果：标题未居中。</p>
+<p>严重程度：轻微</p>
+<p>优先级：低</p>
+<p>发现时间：2025-03-10</p>
+<h4 id="缺陷编号：DEF-UI-0-2"><a href="#缺陷编号：DEF-UI-0-2" class="headerlink" title="*缺陷编号：DEF-**UI**0**2*"></a><em><strong>*缺陷编号：DEF-*</strong></em><em><strong>*UI*</strong></em><em><strong>*0*</strong></em><em><strong>*2*</strong></em></h4><p>缺陷标题：按钮颜色不一致</p>
+<p>测试对象：教务管理系统 <a target="_blank" rel="noopener" href="http://10.1.1.149/">http://10.1.1.149</a></p>
+<p>缺陷描述：部分按钮颜色与其他按钮不一致</p>
+<p>操作步骤：填写重现缺陷的具体操作步骤</p>
+<p>预期结果：</p>
+<p>实际结果：</p>
+<p>严重程度：</p>
+<p>优先级：</p>
+<p>发现时间：</p>
+<h1 id="三、-测试分析"><a href="#三、-测试分析" class="headerlink" title="三、*测试分析*"></a><strong>三、</strong><em><strong>*测试分析*</strong></em></h1><p>填写测试功能缺陷与界面缺陷的具体分析内容。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2025/04/11/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%95%8C%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%9F%A5%E6%89%BE%E5%AE%9E%E8%AE%AD%E6%8A%A5%E5%91%8A/">http://example.com/2025/04/11/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%95%8C%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%9F%A5%E6%89%BE%E5%AE%9E%E8%AE%AD%E6%8A%A5%E5%91%8A/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2025/04/11/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9B%BE/" title="软考工程图"><span>< PreviousPost</span><br><span class="prevTitle">软考工程图</span></a><a class="nextSlogan" href="/2025/04/11/%E8%80%B3%E6%9C%BA%E9%80%89%E6%8B%A9/" title="耳机选择"><span>NextPost ></span><br><span class="nextTitle">耳机选择</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%95%8C%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%9F%A5%E6%89%BE%E5%AE%9E%E8%AE%AD%E6%8A%A5%E5%91%8A"><span class="toc-number">1.</span> <span class="toc-text">软件测试-功能与界面缺陷查找实训报告</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">一、*基本信息*</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%B5%8B%E8%AF%95%E5%86%85%E5%AE%B9"><span class="toc-number">1.2.</span> <span class="toc-text">二、*测试内容*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%8E-%E5%8A%9F%E8%83%BD%E7%BC%BA%E9%99%B7%E6%9F%A5%E6%89%BE"><span class="toc-number">1.2.1.</span> <span class="toc-text">1．*功能缺陷查找*</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89-%E6%B5%8B%E8%AF%95%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">（1）*测试思路及测试环境*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89-%E7%BC%BA%E9%99%B7%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">（2）*缺陷列表*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89-%E7%BC%BA%E9%99%B7%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">（3）*缺陷详细描述*</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7%E7%BC%96%E5%8F%B7%EF%BC%9ADEF-001"><span class="toc-number">1.2.1.3.1.</span> <span class="toc-text">缺陷编号：DEF-001</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7%E7%BC%96%E5%8F%B7%EF%BC%9ADEF-00-2"><span class="toc-number">1.2.1.3.2.</span> <span class="toc-text">*缺陷编号：DEF-00**2*</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8E-%E7%95%8C%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%9F%A5%E6%89%BE"><span class="toc-number">1.3.</span> <span class="toc-text">2．*界面缺陷查找*</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89-%E6%B5%8B%E8%AF%95%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">（1）*测试思路及测试环境*</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89-%E7%BC%BA%E9%99%B7%E5%88%97%E8%A1%A8-1"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">（2）*缺陷列表*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89-%E7%BC%BA%E9%99%B7%E8%AF%A6%E7%BB%86%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">（3）*缺陷详细描述*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7%E7%BC%96%E5%8F%B7%EF%BC%9ADEF-UI-01"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">*缺陷编号：DEF-**UI**01*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7%E7%BC%96%E5%8F%B7%EF%BC%9ADEF-UI-0-2"><span class="toc-number">1.3.1.4.</span> <span class="toc-text">*缺陷编号：DEF-**UI**0**2*</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">三、*测试分析*</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>3D创建小地图 · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">3D创建小地图</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2025-04-11 15:20:33</span></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">620</span> | Reading time: <span class="post-count">2</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h2 id="方法-1：使用-Camera-进行实时小地图"><a href="#方法-1：使用-Camera-进行实时小地图" class="headerlink" title="方法 1：使用 Camera 进行实时小地图"></a><strong>方法 1：使用 Camera 进行实时小地图</strong></h2><h3 id="✅-适用于：-开放世界、大型地图，实时更新。"><a href="#✅-适用于：-开放世界、大型地图，实时更新。" class="headerlink" title="✅ 适用于： 开放世界、大型地图，实时更新。"></a><strong>✅ 适用于：</strong> 开放世界、大型地图，实时更新。</h3><h3 id="🚀-实现步骤："><a href="#🚀-实现步骤：" class="headerlink" title="🚀 实现步骤："></a><strong>🚀 实现步骤：</strong></h3><ol>
+<li><p><strong>创建一个小地图专用摄像机</strong></p>
+<ul>
+<li>在 <code>Hierarchy</code> 里，右键 <code>Create</code> &gt; <code>Camera</code>，命名为 <code>MiniMapCamera</code>。</li>
+<li>调整参数：<ul>
+<li><code>Projection</code> 设为 <strong>Orthographic（正交投影）</strong>。</li>
+<li><code>Size</code> 调整视野范围（影响小地图缩放）。</li>
+<li><code>Rotation</code> 设为 <code>(90, 0, 0)</code>，确保垂直俯视。</li>
+<li><code>Culling Mask</code> 只渲染需要的小地图对象（如地形、建筑）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>让小地图摄像机跟随玩家</strong></p>
+<ul>
+<li><p>在 <code>MiniMapCamera</code> 的 <code>Transform</code> 组件中：</p>
+</li>
+<li><p><code>Position.y</code> 设置得足够高（如 <code>50</code>）。</p>
+</li>
+<li><p><code>**创建 C# 脚本 </code>MiniMapCameraFollow.cs&#96;**：</p>
+  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MiniMapCameraFollow</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Transform player; <span class="comment">// 玩家对象</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">LateUpdate</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (player != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Vector3 newPosition = player.position;</span><br><span class="line">            newPosition.y = transform.position.y; <span class="comment">// 只改变 XY 轴</span></span><br><span class="line">            transform.position = newPosition;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>挂载到 <code>MiniMapCamera</code> 并拖入 <code>Player</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>在 UI 中显示小地图</strong></p>
+<ul>
+<li><code>Canvas</code> 下创建 <code>RawImage</code>（<code>UI</code> &gt; <code>RawImage</code>）。</li>
+<li>新建一个 <code>Render Texture</code>（<code>Assets</code> 右键 <code>Create</code> &gt; <code>Render Texture</code>）。</li>
+<li>把 <code>Render Texture</code> 赋值给 <code>MiniMapCamera</code> 的 <code>Target Texture</code>。</li>
+<li>把 <code>RawImage</code> 的 <code>Texture</code> 设为该 <code>Render Texture</code>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="🔹-方法-2：使用-SpriteRenderer-贴图小地图"><a href="#🔹-方法-2：使用-SpriteRenderer-贴图小地图" class="headerlink" title="🔹 方法 2：使用 SpriteRenderer 贴图小地图"></a><strong>🔹 方法 2：使用 SpriteRenderer 贴图小地图</strong></h2><h3 id="✅-适用于：-固定地图，性能开销低。"><a href="#✅-适用于：-固定地图，性能开销低。" class="headerlink" title="✅ 适用于： 固定地图，性能开销低。"></a><strong>✅ 适用于：</strong> 固定地图，性能开销低。</h3><h3 id="🚀-实现步骤：-1"><a href="#🚀-实现步骤：-1" class="headerlink" title="🚀 实现步骤："></a><strong>🚀 实现步骤：</strong></h3><ol>
+<li><p><strong>绘制小地图贴图</strong></p>
+<ul>
+<li>在 PS&#x2F;AI 或 Unity 里导出一个 <strong>俯视角</strong> 地图截图。</li>
+<li>调整为合适的分辨率，如 <code>512x512</code> 或 <code>1024x1024</code>。</li>
+</ul>
+</li>
+<li><p><strong>创建小地图 UI</strong></p>
+<ul>
+<li><p>在 <code>Canvas</code> 里添加 <code>Image</code>，将小地图纹理作为 <code>Sprite</code>。</p>
+</li>
+<li><p>在 <code>Image</code> 上创建 <code>UI</code> &gt; <code>Image</code>（代表玩家指示器）。</p>
+</li>
+<li><p>创建 C# 脚本 <code>MiniMapPlayerIcon.cs</code></p>
+<p>  ：</p>
+  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">csharp复制编辑<span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MiniMapPlayerIcon</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> RectTransform playerIcon;</span><br><span class="line">    <span class="keyword">public</span> Transform player;</span><br><span class="line">    <span class="keyword">public</span> RectTransform miniMap;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Vector2 mapSize = miniMap.sizeDelta; <span class="comment">// 小地图大小</span></span><br><span class="line">        Vector3 worldPos = player.position; <span class="comment">// 玩家世界坐标</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">float</span> mapX = (worldPos.x / <span class="number">100f</span>) * mapSize.x; <span class="comment">// 100 代表地图比例</span></span><br><span class="line">        <span class="built_in">float</span> mapY = (worldPos.z / <span class="number">100f</span>) * mapSize.y;</span><br><span class="line"></span><br><span class="line">        playerIcon.anchoredPosition = <span class="keyword">new</span> Vector2(mapX, mapY);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这个脚本会根据玩家位置更新小地图上的图标。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="🔹-进阶功能"><a href="#🔹-进阶功能" class="headerlink" title="🔹 进阶功能"></a><strong>🔹 进阶功能</strong></h2><h3 id="🚀-1-让小地图旋转（跟随玩家方向）"><a href="#🚀-1-让小地图旋转（跟随玩家方向）" class="headerlink" title="🚀 1. 让小地图旋转（跟随玩家方向）"></a><strong>🚀 1. 让小地图旋转（跟随玩家方向）</strong></h3><ul>
+<li><p>在 <code>MiniMapCameraFollow.cs</code> 里修改：</p>
+  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">csharp复制编辑<span class="function"><span class="keyword">void</span> <span class="title">LateUpdate</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (player != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 newPosition = player.position;</span><br><span class="line">        newPosition.y = transform.position.y;</span><br><span class="line">        transform.position = newPosition;</span><br><span class="line"></span><br><span class="line">        transform.rotation = Quaternion.Euler(<span class="number">90</span>, player.eulerAngles.y, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样小地图会跟随玩家旋转，类似 Apex 英雄。</p>
+</li>
+</ul>
+<hr>
+<h3 id="🚀-2-显示敌人-队友"><a href="#🚀-2-显示敌人-队友" class="headerlink" title="🚀 2. 显示敌人&#x2F;队友"></a><strong>🚀 2. 显示敌人&#x2F;队友</strong></h3><ol>
+<li><p>创建 <code>MiniMapMarker.cs</code></p>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">csharp复制编辑<span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MiniMapMarker</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> Transform target;</span><br><span class="line">    <span class="keyword">public</span> RectTransform miniMap;</span><br><span class="line">    <span class="keyword">public</span> Image icon;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Vector2 mapSize = miniMap.sizeDelta;</span><br><span class="line">        Vector3 worldPos = target.position;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">float</span> mapX = (worldPos.x / <span class="number">100f</span>) * mapSize.x;</span><br><span class="line">        <span class="built_in">float</span> mapY = (worldPos.z / <span class="number">100f</span>) * mapSize.y;</span><br><span class="line"></span><br><span class="line">        icon.rectTransform.anchoredPosition = <span class="keyword">new</span> Vector2(mapX, mapY);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给敌人和队友添加 <code>MiniMapMarker</code></p>
+<p> ：</p>
+<ul>
+<li>复制 <code>Image</code> 作为 <code>EnemyIcon</code> 或 <code>TeammateIcon</code>。</li>
+<li>给 <code>MiniMapMarker</code> 赋值 <code>target</code> 为 <strong>敌人或队友的 Transform</strong>。</li>
+</ul>
+</li>
+</ol>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2025/04/11/3D%E5%88%9B%E5%BB%BA%E5%B0%8F%E5%9C%B0%E5%9B%BE/">http://example.com/2025/04/11/3D%E5%88%9B%E5%BB%BA%E5%B0%8F%E5%9C%B0%E5%9B%BE/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2025/04/11/IK%E5%8F%8D%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6/" title="IK反向动力学"><span>< PreviousPost</span><br><span class="prevTitle">IK反向动力学</span></a><a class="nextSlogan" href="/2024/12/07/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F/" title="背包系统"><span>NextPost ></span><br><span class="nextTitle">背包系统</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E4%BD%BF%E7%94%A8-Camera-%E8%BF%9B%E8%A1%8C%E5%AE%9E%E6%97%B6%E5%B0%8F%E5%9C%B0%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">方法 1：使用 Camera 进行实时小地图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E9%80%82%E7%94%A8%E4%BA%8E%EF%BC%9A-%E5%BC%80%E6%94%BE%E4%B8%96%E7%95%8C%E3%80%81%E5%A4%A7%E5%9E%8B%E5%9C%B0%E5%9B%BE%EF%BC%8C%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E3%80%82"><span class="toc-number">1.1.</span> <span class="toc-text">✅ 适用于： 开放世界、大型地图，实时更新。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">🚀 实现步骤：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%B9-%E6%96%B9%E6%B3%95-2%EF%BC%9A%E4%BD%BF%E7%94%A8-SpriteRenderer-%E8%B4%B4%E5%9B%BE%E5%B0%8F%E5%9C%B0%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">🔹 方法 2：使用 SpriteRenderer 贴图小地图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E9%80%82%E7%94%A8%E4%BA%8E%EF%BC%9A-%E5%9B%BA%E5%AE%9A%E5%9C%B0%E5%9B%BE%EF%BC%8C%E6%80%A7%E8%83%BD%E5%BC%80%E9%94%80%E4%BD%8E%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">✅ 适用于： 固定地图，性能开销低。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4%EF%BC%9A-1"><span class="toc-number">2.2.</span> <span class="toc-text">🚀 实现步骤：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%B9-%E8%BF%9B%E9%98%B6%E5%8A%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">🔹 进阶功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-1-%E8%AE%A9%E5%B0%8F%E5%9C%B0%E5%9B%BE%E6%97%8B%E8%BD%AC%EF%BC%88%E8%B7%9F%E9%9A%8F%E7%8E%A9%E5%AE%B6%E6%96%B9%E5%90%91%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">🚀 1. 让小地图旋转（跟随玩家方向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-2-%E6%98%BE%E7%A4%BA%E6%95%8C%E4%BA%BA-%E9%98%9F%E5%8F%8B"><span class="toc-number">3.2.</span> <span class="toc-text">🚀 2. 显示敌人&#x2F;队友</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
