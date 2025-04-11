@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>IO流 · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">IO流</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-12-06 21:46:29</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">803</span> | Reading time: <span class="post-count">3</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><p>结构体stract是值类型，不能被继承class是引用类型</p>
+<p>枚举也是值类型</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">申明委托:<span class="function"><span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">EventHandle</span>(<span class="params">obg, args</span>)</span></span><br><span class="line"><span class="function">定义事件:<span class="keyword">public</span> <span class="keyword">event</span> 委托名 事件名</span>;</span><br><span class="line">定义方法:<span class="keyword">void</span> 方法名(obj, args);</span><br><span class="line">注册事件:xxx.事件 += <span class="keyword">new</span> 委托(方法名)</span><br></pre></td></tr></table></figure>
+
+<p>Attribute–特性</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用[]进行设定</span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">STAThread</span>]</span><br></pre></td></tr></table></figure>
+
+<p>.NET基本库<br>System Base Class(ADO.NET, XML, SQL, Threading, IO, Net, Security, Service, Process)<br>System Windows Forms(Controls, Drawing, Windows Application Services)</p>
+<h2 id="流与I-O"><a href="#流与I-O" class="headerlink" title="流与I&#x2F;O"></a>流与I&#x2F;O</h2><p>按存储位置分:  FileStream文件流  MemoryStream内存流  BufferredStream过滤流</p>
+<p>按读写分:  BnaryReader  BinaryWriter二进制读写  TextReader  TextWriter文本读写  StreamReader  StreamWriter  StringReader  Stringwriter字符串读写</p>
+<img src="https://savebiu.github.io/Image//06AF9B6AEA0463CB0E5BA1B7FDA0C8E6.png" alt="img" style="zoom:50%;" />
+
+<h5 id="File-FileInfo文件与文件夹管理"><a href="#File-FileInfo文件与文件夹管理" class="headerlink" title="File&#x2F;FileInfo文件与文件夹管理"></a>File&#x2F;FileInfo文件与文件夹管理</h5><p>读取方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileStream f = <span class="keyword">new</span> FileStream(<span class="string">&quot;路径/文件名&quot;</span>, FileMode.Open, FileAccess.Read, FileShape.Read);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://savebiu.github.io/Image/07EB717CEB2E05F7A82CCC50F5E3C70C.png" alt="img" style="zoom: 33%;" /><img src="https://savebiu.github.io/Image/12D6F38018CC697DDDB759F8450A1EC1.png" alt="img" style="zoom: 33%;" /></p>
+<h5 id="FileInfo-具体文件-–-显示文件"><a href="#FileInfo-具体文件-–-显示文件" class="headerlink" title="FileInfo(具体文件) – 显示文件"></a>FileInfo(具体文件) – 显示文件</h5><p>File(管理static方法)</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建对象</span></span><br><span class="line"><span class="keyword">new</span> FileInfo(路径物理地址)</span><br></pre></td></tr></table></figure>
+
+<p>DirectoryInfo(具体文件夹) – 显示文件夹<br>DIrectory(提供static方法)</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建对象</span></span><br><span class="line"><span class="keyword">new</span> DirectoryInfo(路径物理地址)</span><br></pre></td></tr></table></figure>
+
+<p>FileSystemInfo(FileInfo和DirectoryInfo的父类)</p>
+<p>Path(文件路径类)</p>
+<h5 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h5><h6 id="以下是FileInfo的操作"><a href="#以下是FileInfo的操作" class="headerlink" title="以下是FileInfo的操作:"></a>以下是FileInfo的操作:</h6><p>Name	文件名称<br>Extension	扩展名<br>FullName	完全路径<br>Length	文件大小,单位字节<br>CreationTime	文件创建时间<br>LastAccessTime	上次访问时间<br>LastWriteTIme	上次修改时间<br>DirectoryName	所在文件夹<br>Attributes	文件属性,如只读,隐藏等<br>Parent	父文件<br>Root	根目录</p>
+<h6 id="以下是file文件操作-使用时为file-xxx"><a href="#以下是file文件操作-使用时为file-xxx" class="headerlink" title="以下是file文件操作,使用时为file.xxx"></a>以下是file文件操作,使用时为file.xxx</h6><p>Create(filePath)<br>Copy(filePath1, filePath2)<br>Move(filePath1,filePath2)<br>Delete(filePath)<br>Exists(filePath)<br>CreatText(filePath)</p>
+<h6 id="以下是Directory文件夹操作-使用时为file-xxx"><a href="#以下是Directory文件夹操作-使用时为file-xxx" class="headerlink" title="以下是Directory文件夹操作,使用时为file.xxx"></a>以下是Directory文件夹操作,使用时为file.xxx</h6><p>CreateDirectory(DirPath)<br>Copy(DIrPath1, DirPath2)<br>Move(DirPath1,DirPath2)<br>Delete(DirPath)<br>Exists(DirPath)<br>GetDirectories(DirPath)	得到子文件夹<br>GetFiles(DirPath)	得到该文件夹下的所有文件</p>
+<h6 id="以下是Path类的操作"><a href="#以下是Path类的操作" class="headerlink" title="以下是Path类的操作:"></a>以下是Path类的操作:</h6><p>Combine<br>GetDirectoryName<br>GetExtension	获取扩展名<br>GetFileName<br>GetFileNameWithoutExtension<br>GetFullPath	获取全路径<br>GetPathRoot<br>GetTempFileName<br>GetTempPath</p>
+<h6 id="对话框工具"><a href="#对话框工具" class="headerlink" title="对话框工具"></a>对话框工具</h6><p>ShowDialog打开对话框<br>GetSelectedFolder或GetFile等方法得到用户选择结果</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line">Using Syetem.IO;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Watcher</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">const</span> <span class="built_in">string</span> path = <span class="string">@&quot;d:\program&quot;</span>;</span><br><span class="line">		<span class="comment">//文件系统监视类FielSystemWatcher的使用</span></span><br><span class="line">		FielSystemWatcher watcher = <span class="keyword">new</span> FileSystemWatcher(path)	</span><br><span class="line">		watcher.Path = path;		<span class="comment">//传入路径</span></span><br><span class="line">		watcher.Filter = <span class="string">&quot;*.txt&quot;</span>;		<span class="comment">//监控该路径下所有文本文件</span></span><br><span class="line">		<span class="comment">//对以下事件进行通知</span></span><br><span class="line">		watcher.NotifyFilter = NotifyFilters.LastAccess | NotifiyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;</span><br><span class="line">		<span class="comment">//事件处理函数</span></span><br><span class="line">		watcher.Changed += <span class="keyword">new</span> FileSystemEventHandler(OnChanged);</span><br><span class="line">		watcher.Created += <span class="keyword">new</span> FileSystemEventHandler(OnChanged);</span><br><span class="line">		watcher.Deleted += <span class="keyword">new</span> FileSystemEventHandler(OnChanged);</span><br><span class="line">		watcher.Renamed += <span class="keyword">new</span> FileSyetemEventHandler(OnChanged);</span><br><span class="line">	    <span class="comment">//开始监视</span></span><br><span class="line">	    watcher.EnableRaisingEvents = <span class="literal">true</span>;</span><br><span class="line">	    <span class="comment">//按q结束</span></span><br><span class="line">	    Console.WriteLine(<span class="string">&quot;Press &#x27;q&#x27; to quit the sample&quot;</span>);</span><br><span class="line">		<span class="keyword">while</span>(Console.Read() != <span class="string">&#x27;q&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//事件处理函数</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">OnChanged</span>(<span class="params"><span class="built_in">object</span> source, FileSystemEventArgs e</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//显示哪些函数进行了修改</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;File: &quot;</span> + e.FullPath + <span class="string">&quot; &quot;</span> + e.ChangeType);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>File 类</strong>：</p>
+<p>提供用于创建、复制、删除、移动和打开文件的静态方法。适用于需要对文件进行一次性操作的情况。</p>
+<p><strong>FileInfo 类</strong>：</p>
+<p>提供实例方法，用于创建、复制、删除、移动和打开文件。适用于需要对同一文件进行多次操作的情况，因为它避免了多次安全检查。</p>
+<p><strong>FileStream 类</strong>：</p>
+<p>提供用于读写文件的流。适用于需要对文件进行低级别读写操作的情况。</p>
+<p>FileDirectory类</p>
+<p>提供用于创建、移动和枚举目录和子目录的静态方法。适用于需要对目录进行操作的情况。</p>
+<p>，FileInfo类fileStream类FileDirectory类</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2025/04/11/IO%E6%B5%81/">http://example.com/2025/04/11/IO%E6%B5%81/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2025/04/11/Controler_Study_2D/" title="Controler_Study_2D"><span>< PreviousPost</span><br><span class="prevTitle">Controler_Study_2D</span></a><a class="nextSlogan" href="/2025/04/11/IK%E5%8F%8D%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6/" title="IK反向动力学"><span>NextPost ></span><br><span class="nextTitle">IK反向动力学</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E4%B8%8EI-O"><span class="toc-number">1.</span> <span class="toc-text">流与I&#x2F;O</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#File-FileInfo%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9%E7%AE%A1%E7%90%86"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">File&#x2F;FileInfo文件与文件夹管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#FileInfo-%E5%85%B7%E4%BD%93%E6%96%87%E4%BB%B6-%E2%80%93-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">FileInfo(具体文件) – 显示文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">常用属性</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AFFileInfo%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.0.0.3.1.</span> <span class="toc-text">以下是FileInfo的操作:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AFfile%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C-%E4%BD%BF%E7%94%A8%E6%97%B6%E4%B8%BAfile-xxx"><span class="toc-number">1.0.0.3.2.</span> <span class="toc-text">以下是file文件操作,使用时为file.xxx</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AFDirectory%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C-%E4%BD%BF%E7%94%A8%E6%97%B6%E4%B8%BAfile-xxx"><span class="toc-number">1.0.0.3.3.</span> <span class="toc-text">以下是Directory文件夹操作,使用时为file.xxx</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AFPath%E7%B1%BB%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.0.0.3.4.</span> <span class="toc-text">以下是Path类的操作:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%B7%A5%E5%85%B7"><span class="toc-number">1.0.0.3.5.</span> <span class="toc-text">对话框工具</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

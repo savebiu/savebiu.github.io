@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>骨骼 · UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">骨骼</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2024-12-07 16:14:42</span></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">3.8k</span> | Reading time: <span class="post-count">13</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><ul>
+<li><p><strong>骨架：</strong>什么是骨架资产以及如何配置它。</p>
+</li>
+<li><p><strong>角色 API：</strong>如何与默认<strong>角色</strong>系统交互。</p>
+</li>
+<li><p><strong>角色控制器：</strong>如何自定义其他角色控制器或将其他角色控制器与默认控制器集成。</p>
+</li>
+<li><p><strong>自定义 IK：</strong>如何构建新的反向运动角色装备。</p>
+</li>
+</ul>
+<h1 id="骨骼"><a href="#骨骼" class="headerlink" title="骨骼"></a>骨骼</h1><p>骨架资源是一种可编写脚本的对象资源，其中包含识别角色骨骼的边界体积以及这些边界体积如何形成符合整个身体的关节链的所有必要信息<strong>。</strong></p>
+<p>它是干什么用的？</p>
+<p>骨架资产用于多个系统，例如布偶系统或近战和射击命中检测系统<strong>。</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/article/465a5620dc2c93b767a243f481a7ae4d250898496.png@1256w_814h_!web-article-pic.avif" alt="img"></p>
+<h1 id="创建骨架"><a href="#创建骨架" class="headerlink" title="创建骨架"></a>创建骨架</h1><p>要创建骨架资源，请右键单击项目面板并选择<strong>Create → Game Creator → Characters → Skeleton</strong>.</p>
+<p><strong>要将*<em>Skeleton*<em><strong>资源分配给 <em><strong>*Character*</strong></em> ，只需选择所需的</strong></em>*Character*</em></strong> 并展开Animation选项卡即可。**将**Skeleton****资源拖放到相应的字段中。</p>
+<p><img src="https://i0.hdslb.com/bfs/article/c3e93a46c1f07b45657d6dcc204fa642250898496.png@1256w_1208h_!web-article-pic.avif" alt="img"></p>
+<h1 id="配置骨架"><a href="#配置骨架" class="headerlink" title="配置骨架"></a>配置骨架</h1><p>骨架资源分为不同的部分<strong>：</strong></p>
+<p>第一个是一个大按钮，允许进入骨架配置模式。在此模式下，场景将被替换为中间有角色的空场景，可以通过将预制模型拖放到下面的字段中并单击“更改角色”按钮来更改场景。</p>
+<p>第二部分确定源自体积的刚体系统的物理材质和碰撞检测模式。</p>
+<p>底部有所有已设置卷的列表。该列表可以手动配置，也可以使用人形角色的启发式创建器。</p>
+<p><img src="https://i0.hdslb.com/bfs/article/4804b5df0e9fffcba4da1c2f274ba6b5250898496.png@1256w_1448h_!web-article-pic.avif" alt="img"></p>
+<p>要创建体积骨骼，请单击“添加体积”并选择要创建的骨骼类型：</p>
+<ul>
+<li><strong>盒子：</strong>立方体的体积。主要用于胸部和平坦表面。</li>
+<li><strong>球体：</strong>球形体积。主要用于手和头。</li>
+<li><strong>胶囊：</strong>应用最广泛的卷骨。用于大多数四肢。</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/article/ca65856587dd25e3fa74f9a17a18d02b250898496.png@1256w_672h_!web-article-pic.avif" alt="img"></p>
+<p>体积骨骼由骨骼<strong>类型</strong>、体积定义和可选的<strong>关节</strong>组成。</p>
+<p>可以通过从下拉列表或路径中设置人形骨骼来指定骨骼类型。例如，要引用狗模型的右前脚，骨骼可以是<code>Root/Spine/Collar/Right_Leg/Right_Foot</code>。</p>
+<p>卷定义取决于创建的卷的类型。例如，球体体积骨骼包含半径和位置偏移字段。</p>
+<p>关节字段允许确定骨骼如何通过关节系统与其他骨骼相关。</p>
+<h1 id="设置人形骨骼"><a href="#设置人形骨骼" class="headerlink" title="设置人形骨骼"></a>设置人形骨骼</h1><p><strong>Game Creator</strong>附带了一个工具，可以更轻松地自动猜测和提取人形模型的边界体积。要使用它，只需使用“更改角色”按钮更改角色模型，然后单击“创建人形”按钮即可。它会自动为您神奇地近似一个骨架，然后您可以根据您的游戏需求对其进行调整。</p>
+<p><img src="https://i0.hdslb.com/bfs/article/68866dfc9a942f0804743d736b938744250898496.png@1256w_704h_!web-article-pic.avif" alt="img"></p>
+<h1 id="角色API"><a href="#角色API" class="headerlink" title="角色API"></a>角色API</h1><p>本节介绍组件的内部结构<code>Character</code>以及公开哪些API供程序员使用。</p>
+<h1 id="运动"><a href="#运动" class="headerlink" title="运动"></a>运动</h1><p>要将角色移动到某个位置，您需要访问该<code>IMotion</code>单元，该单元处理对运动信号的响应。要了解有关内核单元的更多信息，请访问角色控制器页面。</p>
+<p>角色可以执行 3 种移动类型：</p>
+<ul>
+<li><strong>移动到一个位置：</strong>这是使用<code>MoveToLocation(...)</code>方法完成的。</li>
+<li><strong>朝某个方向移动：</strong>执行该<code>MoveToDirection(...)</code>方法即可完成。</li>
+<li><strong>开始&#x2F;停止跟随目标：</strong>这是使用<code>StartFollowingTarget(...)</code>和完成的<code>StopFollowingTarget(...)</code>。</li>
+</ul>
+<p>例如，要强制角色移动到目标的变换位置，应使用以下片段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Location location = new Location(target.position);character.Motion.MoveToLocation(location, 0f, null);</span><br></pre></td></tr></table></figure>
+
+<h1 id="布娃娃"><a href="#布娃娃" class="headerlink" title="布娃娃"></a>布娃娃</h1><p>只要角色有 Skeleton，就可以触发布娃娃状态。要使角色进入布娃娃状态，请使用该<code>character.Ragdoll.StartRagdoll()</code>方法。要从布娃娃状态恢复，请执行该<code>character.Ragdoll.StartRecover()</code>方法。</p>
+<p>布娃娃与死亡</p>
+<p>我们建议在进入布娃娃状态之前将角色设置为死亡。否则，布娃娃动画可能想要执行仅适用于非布娃娃角色的动作（例如跑步、射击、跳跃……）。</p>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><p>要播放动画<strong>手势，</strong>您可以访问该<code>Gestures</code>属性并触发该<code>CrossFade(...)</code>方法，该方法负责在 Unity 的 Mecanim 之上创建一个新层（如有必要）并播放所需的动画。</p>
+<p>要进入或退出动画<strong>状态</strong>，您可以从属性访问<code>SetState(...)</code>和方法。<code>Stop(...)``State</code></p>
+<p>请注意，所有动画方法都是async。这意味着您的代码可以让出，直到动画执行完毕。例如，要播放手势动画并在动画完成后立即打印控制台消息，您可以使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Debug.Log(&quot;Start playing a new animation gesture&quot;)await character.Gestures.CrossFade(myAnimationClip, ...);Debug.Log(&quot;The previous animation has finished&quot;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="改变模型"><a href="#改变模型" class="headerlink" title="改变模型"></a>改变模型</h1><p>要更改角色模型，请调用该<code>ChangeModel(...)</code>方法。它的签名包含2个参数：</p>
+<ul>
+<li>预制对象引用，应该是 FBX 模型</li>
+<li>类型的配置结构<code>ChangeOptions</code></li>
+</ul>
+<p>最后一个可选参数允许定义新模型的脚步声、其骨架的边界体积以及新的动画控制器和偏移量。例如，要更改玩家的模型而不使用任何可选参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GameObject instance = character.ChangeModel(prefab, default);</span><br></pre></td></tr></table></figure>
+
+<h1 id="忙碌的"><a href="#忙碌的" class="headerlink" title="忙碌的"></a>忙碌的</h1><p>从该<code>Busy</code>属性访问，它允许查询角色的特定肢体是否正在使用。这允许其他系统确定是否可以执行某个操作。</p>
+<p>忙碌且可用的肢体</p>
+<p>例如，如果角色的双臂设置为不可用，则无法尝试执行涉及手的动作，例如抓住梯子。</p>
+<p>可以查询以下属性并告知肢体或肢体组的可用性状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IsArmLeftBusy : booleanIsArmRightBusy : booleanIsLegLeftBusy : booleanIsLegRightBusy : booleanAreArmsBusy : booleanAreLegsBusy : booleanIsBusy : boolean</span><br></pre></td></tr></table></figure>
+
+<p>此外，可以使用 方法将肢体标记为忙碌或使其可用<code>MakeLimbXXX()</code>，其中 XXX 是身体的肢体。例如，要将Left Leg设置为忙，请调用该<code>MakeLegLeftBusy()</code>方法。</p>
+<p>所有可用的方法</p>
+<p>有关繁忙系统上所有可用方法的更多信息，请检查下面的脚本<code>Plugins/GameCreator/Packages/Core/Runtime/Characters/Busy</code></p>
+<h1 id="角色控制器"><a href="#角色控制器" class="headerlink" title="角色控制器"></a>角色控制器</h1><p><strong>游戏创建者</strong>角色的设计易于使用且高度可定制。本节将介绍<strong>角色</strong>在每个帧周期执行的操作。这将使您能够正确地创建与 Game Creator 一起使用的自定义角色，或者您想要将另一个包中的角色系统集成到 Game Creator 中。</p>
+<p>字符组件由 5 个符合<strong>内核的<strong><strong>不同</strong></strong>单元</strong>组成。这些单位可以在运行时更改，而不会影响其余单位：</p>
+<ul>
+<li><strong>玩家：</strong>定义角色是否可玩以及用户如何与其交互。如果您想创建自定义字符输入系统，则需要实现该<code>IUnitPlayer</code>接口。</li>
+<li><strong>运动：</strong>充当场景和角色之间的界面。所有移动命令都通过该系统转发，并且还考虑了玩家的信息。它决定应使用哪种运动系统。如果您想为角色创建不同的运动系统，请创建一个实现该<code>IUnitMotion</code>接口的类。</li>
+<li><strong>Driver：</strong>根据Motion的输入管理角色如何在场景中移动。如果您想集成另一个 Asset Store 包中的另一个角色系统，请创建一个实现<code>IUnitDriver</code>.</li>
+<li><strong>面向：</strong>负责将角色旋转到所需的方向。例如，默认行为是让角色看向其移动的位置。如果您想自定义角色所面对的位置，请创建一个实现该<code>IUnitFacing</code>接口的自定义类。</li>
+<li><strong>Animim：</strong>该系统接受Driver的输入并告诉 Animator 组件应通过 Mecanim 参数播放哪个动画。如果您想为您的角色使用自定义动画器，请创建一个实现<code>IUnitAnimim</code>接口的类。</li>
+</ul>
+<p>每一个新的周期，<strong>角色</strong>都会以非常特定的顺序更新所有这些系统。</p>
+<p><img src="/" alt="img"></p>
+<p>它首先调用<strong>Player</strong>的系统<code>Update()</code>方法。这需要用户的输入并调用<strong>Motion</strong>的公共移动方法之一：</p>
+<ul>
+<li><code>MoveToDirection()</code></li>
+<li><code>MoveToPosition()</code></li>
+</ul>
+<p>在<strong>Player</strong>的系统处理完之后，<strong>Character</strong>调用<strong>Motion</strong>系统的<code>Update()</code>方法。这是计算外力的地方，例如重力、斜坡滑动、冲刺、跳跃……</p>
+<p>系统间通信</p>
+<p>运动系统在运行更新之前<strong>会</strong>考虑<strong>玩家的系统。</strong>一个系统可以在处理其周期之前访问任何其他系统的数据<code>Update()</code>。</p>
+<p>计算出最终的<strong>Motion运动后，</strong> <strong>Character</strong>执行<strong>Driver</strong>的<code>Update()</code>方法。这是根据<strong>运动参数提供的运动类型更新</strong>变换组件的地方。</p>
+<p><strong>Driver</strong>系统完成后， <strong>Facing</strong>系统启动。根据<strong>驱动程序</strong>和<strong>运动</strong>系统提供的信息，它会计算角色应面向的方向。</p>
+<p>最后，<strong>Character</strong>系统调用<strong>Animim</strong>的<code>Update()</code>方法，该方法根据其余系统的信息向<strong>Animator组件提供必要的参数值。</strong></p>
+<p>模块化设计</p>
+<p>重要的是要强调每个系统彼此独立的事实。您可以通过实现接口来创建自定义动画系统<code>IUnitAnimim</code>，并且仍然使用默认的<strong>Player</strong>、<strong>Motion</strong>和<strong>Driver</strong>系统。</p>
+<h1 id="玩家"><a href="#玩家" class="headerlink" title="玩家"></a>玩家</h1><p>玩家单元处理用户如何与玩家角色交互<strong>。</strong>如果角色没有<code>Is Player</code>选中该字段，则该单元将被完全跳过。</p>
+<p>播放器还包含<code>IsControllable</code>定义角色是否处理接收到的输入的标志。当角色处于过场动画中间并且您不希望用户控制玩家时，这非常有用。</p>
+<h1 id="运动-1"><a href="#运动-1" class="headerlink" title="运动"></a>运动</h1><p>运动单元<strong>是</strong>角色的大脑。它包含了它所有的怪癖，比如它的高度、它的移动速度、终端速度等等。</p>
+<p>运动单元还负责接收任何运动命令<strong>：</strong></p>
+<ul>
+<li><code>MoveToDirection</code>定义角色必须去的方向。必须每帧调用此方法，否则角色将停止。</li>
+<li><code>StopToDirection</code>停止角色的移动。当角色由于其减速度值而移动时很有用。</li>
+</ul>
+<p>还可以指示角色移动到某个位置：</p>
+<ul>
+<li><code>MoveToLocation</code>指示角色移动到特定位置。该<code>Location</code>班级接受职位和&#x2F;或轮换。</li>
+<li><code>MoveToTransform</code>指示角色移动到特定变换的位置。如果变换改变其位置，角色将跟随它直到到达目标。</li>
+<li><code>MoveToMarker</code>与之前的方法类似，但也考虑了标记的旋转并强制角色结束时面向与导航标记相同的方向。</li>
+</ul>
+<p>角色也可以在没有结束条件的情况下跟随另一个目标：</p>
+<ul>
+<li><code>StartFollowingTarget</code>开始跟随目标并保持在<code>minRadius</code>一定<code>maxRadius</code>距离内。</li>
+<li><code>StopFollowingTarget</code>指示角色停止跟随目标。</li>
+</ul>
+<p><strong>运动</strong>单元还负责处理角色的跳跃。如果可能的话，该<code>Jump()</code>方法将指示角色执行跳跃（或空中跳跃）。</p>
+<h1 id="驱动器"><a href="#驱动器" class="headerlink" title="驱动器"></a>驱动器</h1><p>驱动<strong>程序</strong>单元控制角色如何在场景中移动：无论是使用 Unity 的角色控制器、用于避障的导航网格代理还是基于物理的刚体实体。</p>
+<p>该单元接收Motion和Facing的运动信息，并将其转换为物理平移和旋转。</p>
+<h1 id="面向"><a href="#面向" class="headerlink" title="面向"></a>面向</h1><p>面向单元控制角色的身体（而不是头部）指向的位置<strong>。</strong>默认情况下，所有角色除非移动，否则不会旋转身体；在这种情况下，身体会朝着角色移动的方向旋转。</p>
+<p>然而，在某些情况下，角色可能想要暂时面向某个方向。例如，当角色用枪瞄准某个物体时，或者与角色交谈时。<strong>Game Creator</strong>附带了一个图层系统，为这些情况提供了一个简洁的解决方案。</p>
+<p>推荐</p>
+<p>如果您计划创建自己的面向系统，我们建议创建一个继承自 的类<code>TUnitFacing</code>而不是接口<code>IUnitFacing</code>。该基类附带了开箱即用的图层系统，因此您无需重新编码。</p>
+<p>Faceing系统接口提供了 3<strong>种</strong>方法的访问：</p>
+<ul>
+<li><code>int SetLayerDirection(int key, Vector3 direction, bool autoDestroyOnReach)</code></li>
+<li><code>int SetLayerTarget(int key, Transform target)</code></li>
+<li><code>void DeleteLayer(int key)</code></li>
+</ul>
+<p>前两种方法<code>SetPlayerDirection</code>允许<code>SetLayerTarget</code>角色看向某个方向或跟踪特定的场景对象。使角色改变其默认方向是使用图层系统完成的。</p>
+<p>当第一次调用这些方法中的任何一个时，它会在图层系统中创建一个新条目并返回其标识符：一个称为 的整数<code>key</code>。要随后更新特定层，只需将<code>key</code>上一次迭代的结果键作为参数传递即可。</p>
+<p>例如，如果您想让一个角色看着某个角色（由变量 定义<code>lookAtTransform</code>），您只需调用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private int key = -1;public Character character;public Transform lookAtTransform;public void StartFacing()&#123;   IUnitFacing face = this.character.Facing.Current;   this.key = face.SetLayerTarget(this.key, this.lookAtTransform, false);&#125;public void StopFacing()&#123;   IUnitFacing face = this.character.Facing.Current;   face.DeleteLayer(this.key);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>没有例外</p>
+<p>需要注意的是，图层系统不会抛出任何异常。如果您尝试删除图层但密钥不存在，则它不会执行任何操作。</p>
+<p>调用该<code>StartFacing()</code>方法时，角色会平滑地向定义的目标旋转，直到该<code>StopFacing()</code>方法被调用。</p>
+<p>但是，在某些情况下，您可能不想手动删除面向图层，而是当角色到达其目标方向时停止面向特定方向。对于这些情况，只需将<code>SetLayerDirection</code>方法的最后一个参数设置为<code>true</code>。这将告诉 Game Creator 在角色到达目标方向时自动删除该层。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Character character;public Vector3 direction;public void LookAt()&#123;   IUnitFacing face = this.character.Facing.Current;   face.SetLayerDirection(-1, this.direction, true);&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Animim"><a href="#Animim" class="headerlink" title="Animim"></a>Animim</h1><p>Animim单元处理与角色视觉表示相关的所有内容：从外观到动画<strong>。</strong></p>
+<p>需要动画师</p>
+<p>该单元需要 Animator 组件引用才能处理动画</p>
+<p>默认的角色系统附带了一组在顶部播放的程序动画，这些动画在不同的动画中添加了微妙但一致的运动，例如呼吸和用力。<code>HeartRate</code>可以使用、<code>Exertion</code>和属性修改呼吸频率和用力量<code>Twitching</code>。</p>
+<h1 id="自定义IK"><a href="#自定义IK" class="headerlink" title="自定义IK"></a>自定义IK</h1><p><strong>Game Creator</strong>中的角色具有分层反向运动系统，可以依次堆叠以修改角色的动画。反向运动学最常见的形式是脚 IK，它确保角色的脚正确放置并与其下方的地板对齐。</p>
+<h1 id="访问装备"><a href="#访问装备" class="headerlink" title="访问装备"></a>访问装备</h1><p>访问装备是使用角色组件的 IK 属性完成的。例如，要停用将脚与地面对齐的装置，可以使用以下命令来完成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">character.IK.GetRig&lt;RigFeetPlant&gt;().IsActive = false;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，<code>character.IK.GetRig&lt;RigFeetPlant&gt;()</code>返回该特定装备的实例（如果找不到，则返回 null）。</p>
+<h1 id="创建自定义装备"><a href="#创建自定义装备" class="headerlink" title="创建自定义装备"></a>创建自定义装备</h1><p><strong>Game Creator</strong>提供两种类型的 IK 系统包装器：</p>
+<ul>
+<li>由 DOTS 提供动力的索具</li>
+<li>由该<code>AnimatorIK</code>方法提供动力的索具</li>
+</ul>
+<p>要创建新的 IK 系统，您必须创建一个继承自<code>TRigAnimationRigging</code>（对于 DOTS）或<code>TRigAnimatorIK</code>（对于 AnimatorIK）的类。我们建议尽可能使用新的基于 DOTS 的方法，因为它的性能更高。</p>
+<p>无论哪种情况，您都应该重写<code>DoStartup(...)</code>和<code>DoUpdate(...)</code>方法，它们分别在开始和每一帧调用一次。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class MyCustomRig : TRigAnimationRigging</span><br><span class="line">&#123;   </span><br><span class="line">   protected override bool DoStartup(Character character)   &#123; &#125;   </span><br><span class="line">  protected override bool DoEnable(Character character)   &#123; &#125;   </span><br><span class="line">  protected override bool DoDisable(Character character)   &#123; &#125;   </span><br><span class="line">  protected override bool DoUpdate(Character character)   &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>本文禁止转载或摘编</p>
+<p>分享到： </p>
+<h2 id=""><a href="#" class="headerlink" title="- "></a>- </h2><h2 id="-1"><a href="#-1" class="headerlink" title="- "></a>- </h2><p>- </p>
+<p>投诉或建议</p>
+<p>麻枝准炽焰天穹公测、联动SS免费送!</p>
+<ul>
+<li><p>评论0</p>
+</li>
+<li><p>最热</p>
+<p>  最新</p>
+</li>
+</ul>
+<p><img src="/" alt="img"></p>
+<p>发布</p>
+<p>没有更多评论</p>
+<p>目录</p>
+<p>2</p>
+<p>0</p>
+<p>2</p>
+<p>0</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2025/04/11/Game%20Creator%20%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%976%E2%80%94%E2%80%94%E4%BA%BA%E7%89%A95%EF%BC%9A%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9%EF%BC%88%E9%AA%A8%E6%9E%B6%E3%80%81%E8%A7%92%E8%89%B2API%E3%80%81%E8%A7%92%E8%89%B2%E6%8E%A7%E5%88%B6%E5%99%A8%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89IK%EF%BC%89/">http://example.com/2025/04/11/Game%20Creator%20%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%976%E2%80%94%E2%80%94%E4%BA%BA%E7%89%A95%EF%BC%9A%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9%EF%BC%88%E9%AA%A8%E6%9E%B6%E3%80%81%E8%A7%92%E8%89%B2API%E3%80%81%E8%A7%92%E8%89%B2%E6%8E%A7%E5%88%B6%E5%99%A8%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89IK%EF%BC%89/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2025/04/11/%E5%AF%B9%E8%B1%A1%E6%B1%A0Pool/" title="Pool"><span>< PreviousPost</span><br><span class="prevTitle">Pool</span></a><a class="nextSlogan" href="/2025/04/11/FruitDetPtlnferGUI-YOLOv8%E6%B5%8B%E8%AF%95/" title=""><span>NextPost ></span><br><span class="nextTitle">[Untitled Post]</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AA%A8%E9%AA%BC"><span class="toc-number">1.</span> <span class="toc-text">骨骼</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%AA%A8%E6%9E%B6"><span class="toc-number">2.</span> <span class="toc-text">创建骨架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%AA%A8%E6%9E%B6"><span class="toc-number">3.</span> <span class="toc-text">配置骨架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BA%BA%E5%BD%A2%E9%AA%A8%E9%AA%BC"><span class="toc-number">4.</span> <span class="toc-text">设置人形骨骼</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%92%E8%89%B2API"><span class="toc-number">5.</span> <span class="toc-text">角色API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E5%8A%A8"><span class="toc-number">6.</span> <span class="toc-text">运动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%A8%83%E5%A8%83"><span class="toc-number">7.</span> <span class="toc-text">布娃娃</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-number">8.</span> <span class="toc-text">动画</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%B9%E5%8F%98%E6%A8%A1%E5%9E%8B"><span class="toc-number">9.</span> <span class="toc-text">改变模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%99%E7%A2%8C%E7%9A%84"><span class="toc-number">10.</span> <span class="toc-text">忙碌的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">11.</span> <span class="toc-text">角色控制器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%A9%E5%AE%B6"><span class="toc-number">12.</span> <span class="toc-text">玩家</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E5%8A%A8-1"><span class="toc-number">13.</span> <span class="toc-text">运动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E5%99%A8"><span class="toc-number">14.</span> <span class="toc-text">驱动器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91"><span class="toc-number">15.</span> <span class="toc-text">面向</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Animim"><span class="toc-number">16.</span> <span class="toc-text">Animim</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89IK"><span class="toc-number">17.</span> <span class="toc-text">自定义IK</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E8%A3%85%E5%A4%87"><span class="toc-number">18.</span> <span class="toc-text">访问装备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A3%85%E5%A4%87"><span class="toc-number">19.</span> <span class="toc-text">创建自定义装备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">19.1.</span> <span class="toc-text">- </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">19.2.</span> <span class="toc-text">- </span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

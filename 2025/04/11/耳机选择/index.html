@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="zh_CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="UP"><meta name="renderer" content="webkit"><meta name="copyright" content="UP"><meta name="keywords" content="Hexo"><meta name="description" content="欢迎来到垃圾站"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>UP的博客</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
+
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/saveabc.jpg"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">UP</div><div class="profile-signature">只要你多做一天牛马,你就又做了一天牛马</div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(img/assets/bg.jpg);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">UP的博客</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/archives/">Archives</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/archives/">Archives</a></div></i><div class="clear"></div></section></nav><h1 class="post-title"></h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-edit"></i><span>2025-02-02 09:55:19</span></span></div><div class="post-intro-read"><span> Word count: <span class="post-count">496</span> | Reading time: <span class="post-count">1</span>min</span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><h3 id="1-音质相关"><a href="#1-音质相关" class="headerlink" title="1. 音质相关"></a><strong>1. 音质相关</strong></h3><ul>
+<li><strong>频响范围（Hz）</strong>：耳机能发出的最低和最高声音频率，通常在 <strong>20Hz-20kHz</strong> 之间（人耳可听范围）。<ul>
+<li><strong>低频（Bass，20Hz-250Hz）</strong>：决定低音的力度和震撼感，适合喜欢重低音的用户。</li>
+<li><strong>中频（Mid，250Hz-4kHz）</strong>：主要影响人声和乐器的表现。</li>
+<li><strong>高频（Treble，4kHz-20kHz）</strong>：影响声音的细节和清晰度，比如乐器的泛音。</li>
+</ul>
+</li>
+<li><strong>解码率（kbps&#x2F;kHz）</strong>：指的是耳机支持的音频数据处理能力，越高代表音质保留越多。常见编码格式：<ul>
+<li><strong>SBC</strong>（基础，延迟高）</li>
+<li><strong>AAC</strong>（苹果设备常见，音质较好）</li>
+<li><strong>aptX&#x2F;aptX HD&#x2F;aptX Adaptive</strong>（高通专利，低延迟高音质）</li>
+<li><strong>LDAC</strong>（索尼技术，高码率，支持Hi-Res音质）</li>
+</ul>
+</li>
+<li><strong>信噪比（SNR，dB）</strong>：衡量信号（音乐）与噪声的比值，越高越好，一般超过 <strong>90dB</strong> 代表较好的音质。</li>
+</ul>
+<h3 id="2-音量与灵敏度"><a href="#2-音量与灵敏度" class="headerlink" title="2. 音量与灵敏度"></a><strong>2. 音量与灵敏度</strong></h3><ul>
+<li><strong>分贝（dB）</strong>：表示声音的响度，通常耳机的灵敏度在 <strong>90-110dB&#x2F;mW</strong> 之间，数值越高，耳机在相同功率下声音越大。</li>
+<li><strong>阻抗（Ω，欧姆）</strong>：表示耳机对音频信号的阻碍程度，数值越高，需要更强的音频输出设备（如专业耳放）来驱动。<ul>
+<li><strong>低阻抗（16Ω-32Ω）</strong>：适合手机、蓝牙耳机使用。</li>
+<li><strong>高阻抗（&gt;100Ω）</strong>：适合专业音响设备。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-连接与延迟"><a href="#3-连接与延迟" class="headerlink" title="3. 连接与延迟"></a><strong>3. 连接与延迟</strong></h3><ul>
+<li><strong>蓝牙版本（5.0&#x2F;5.2&#x2F;5.3等）</strong>：版本越高，连接更稳定，功耗更低，延迟更小。</li>
+<li><strong>延迟（ms）</strong>：音频从设备传输到耳机所需的时间，越低越好。<ul>
+<li>游戏模式通常 &lt; 100ms，普通蓝牙耳机约 <strong>200-300ms</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-降噪与特殊功能"><a href="#4-降噪与特殊功能" class="headerlink" title="4. 降噪与特殊功能"></a><strong>4. 降噪与特殊功能</strong></h3><ul>
+<li><strong>主动降噪（ANC）</strong>：通过麦克风采集环境噪声并反向抵消，提高安静度。</li>
+<li><strong>通透模式</strong>：增强环境音，避免完全隔离外界声音。</li>
+<li><strong>麦克风质量</strong>：影响通话清晰度，降噪麦克风能减少风噪和环境噪音。</li>
+</ul>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="http://example.com">UP</a></p><p> <span>Link:  </span><a href="http://example.com/2025/04/11/%E8%80%B3%E6%9C%BA%E9%80%89%E6%8B%A9/">http://example.com/2025/04/11/%E8%80%B3%E6%9C%BA%E9%80%89%E6%8B%A9/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2025/04/11/%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE/" title=""><span>< PreviousPost</span><br><span class="prevTitle">[Untitled Post]</span></a><a class="nextSlogan" href="/2025/04/11/%E5%AF%B9%E8%B1%A1%E6%B1%A0Pool/" title="Pool"><span>NextPost ></span><br><span class="nextTitle">Pool</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a target="_blank" rel="noopener" href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9F%B3%E8%B4%A8%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">1. 音质相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9F%B3%E9%87%8F%E4%B8%8E%E7%81%B5%E6%95%8F%E5%BA%A6"><span class="toc-number">2.</span> <span class="toc-text">2. 音量与灵敏度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%BB%B6%E8%BF%9F"><span class="toc-number">3.</span> <span class="toc-text">3. 连接与延迟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%99%8D%E5%99%AA%E4%B8%8E%E7%89%B9%E6%AE%8A%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">4. 降噪与特殊功能</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
