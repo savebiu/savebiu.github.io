@@ -108,7 +108,17 @@
 查看所有环境：conda env list
 删除环境：conda env remove –name myenv
 安装包：conda install 包名&#x3D;1.2.3(版本号)
-卸载包：c ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></div><div class="read-more"><a class="more" href="/2025/04/11/Anaconda%E4%BD%BF%E7%94%A8/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2025/04/11/3D%E5%88%9B%E5%BB%BA%E5%B0%8F%E5%9C%B0%E5%9B%BE/">3D创建小地图</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2025-04-11T07:16:11.993Z">2025-04-11 15:16:11</time><i class="fa fa-edit"></i><time datetime="2025-04-11T07:16:11.993Z">2025-04-11 15:20:33</time></div><div class="recent-post-content">方法 1：使用 Camera 进行实时小地图✅ 适用于： 开放世界、大型地图，实时更新。🚀 实现步骤：
+卸载包：c ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></div><div class="read-more"><a class="more" href="/2025/04/11/Anaconda%E4%BD%BF%E7%94%A8/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2025/04/11/C#/">C#</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2025-04-11T07:16:33.802Z">2025-04-11 15:16:33</time><i class="fa fa-edit"></i><time datetime="2025-04-11T07:16:33.802Z">2025-04-11 15:22:03</time></div><div class="recent-post-content">值和引用类型值类型只需要一段内存间（实际数据）​引用类型需要两段内存（实际数据，引用）​引用对象的数据部分是中存放在堆中
+静态类型和关键字静态类型：定义后不可更改
+动态类型：直到运行时才会被解析
+堆和栈栈：先进后出，只能从栈顶插入和删除，入栈push, 出栈pop，必须有序输出
+堆：一块内存区域，可按任意顺序插入删除，CLR执行环境会自动清无主对象，GC是垃圾收集器，堆要有序输出必须使用应用​
+类类是面向对象的逻辑相关的数据和函数的封装，每一种类都可以代表一种事物
+从类的外部访问成员需要包括变量名和成员名
+字段字段是申明在类中
+类型外部不能申明全局变量
+隐式和显式字段的初始化显式：
+1int  ...</div><div class="read-more"><a class="more" href="/2025/04/11/C#/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2025/04/11/3D%E5%88%9B%E5%BB%BA%E5%B0%8F%E5%9C%B0%E5%9B%BE/">3D创建小地图</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2025-04-11T07:16:11.993Z">2025-04-11 15:16:11</time><i class="fa fa-edit"></i><time datetime="2025-04-11T07:16:11.993Z">2025-04-11 15:20:33</time></div><div class="recent-post-content">方法 1：使用 Camera 进行实时小地图✅ 适用于： 开放世界、大型地图，实时更新。🚀 实现步骤：
 创建一个小地图专用摄像机
 
 在 Hierarchy 里，右键 Create &gt; Camera，命名为 MiniMapCamera。
@@ -166,10 +176,7 @@ TCP在数据包头部定义了一个序列号用于排序
 防丢包为保证所有数据包都被正确接收, 采用ACK包应答确认，采用重传计时器进行接收判断
 TCP通过丢包感知网络拥堵情况
 
-超时重传：由超时机制判断的重传 ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></div><div class="read-more"><a class="more" href="/2024/12/07/%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2024/11/27/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9E%B6%E6%9E%84/">服务端架构</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2024-11-27T13:13:12.668Z">2024-11-27 21:13:12</time><i class="fa fa-edit"></i><time datetime="2024-11-27T13:13:12.668Z">2024-12-07 15:53:42</time></div><div class="recent-post-content">服务端架构总体结构模块划分
-游戏流程连接阶段：客户端调用Connect连接服务端即为连接阶段。连接后双端即可通信， 但服务端还不知道玩家控制的是哪个角色。于是客户端需要发送一条登录协议，协议中包含用户名、密码等信息，待检验通过后服务端会将网络连接与游戏角色对应起来，从数据库去获取该角色的数据，最后登录成功。
- 交互阶段：双端互通协议，MsgMove、MsgAttack,记事本程序的保存文本功能，都发生在这一阶段。
-登出阶段：玩家下线，服务端把玩家的数据保存到数据库中，对于保存玩家数据的时机，不同的服务端会有不同实现。有些服务端采用定时存储的方式，每隔几分钟把在线玩家的数据写回数据库；有些服务端 ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></div><div class="read-more"><a class="more" href="/2024/11/27/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9E%B6%E6%9E%84/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2024/12/06/%E4%BC%9A%E8%AE%AE12_1/">会议12_1</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2024-12-06T12:44:42.895Z">2024-12-06 20:44:42</time><i class="fa fa-edit"></i><time datetime="2024-12-06T12:44:42.895Z">2024-12-07 15:52:46</time></div><div class="recent-post-content">会议12_1
+超时重传：由超时机制判断的重传 ...</div><div class="recent-post-tags"><a class="post-tag fa fa-tag" href="javascript:void(0)" date-tags="操作"> 操作</a></div><div class="read-more"><a class="more" href="/2024/12/07/%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2024/12/06/%E4%BC%9A%E8%AE%AE12_1/">会议12_1</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2024-12-06T12:44:42.895Z">2024-12-06 20:44:42</time><i class="fa fa-edit"></i><time datetime="2024-12-06T12:44:42.895Z">2024-12-07 15:52:46</time></div><div class="recent-post-content">会议12_1
 
 AudioManager音频管理
 协程
